@@ -39,17 +39,17 @@ def distribution_calc(path)
 end
 
 # 4
-def replace_substring(str, rep, sub, i)
-	newstr = str.dup()
+def replace_substring(str, rep, sub, i=0, rep_len=nil)
+	rep_len = rep_len || rep.length
+	
+	if( i >= str.length ) then
+		return str
+	else
+		if( str[i...i+rep_len] == rep ) then
+			str[i...i+rep_len] = sub
+			i += rep_len - 1
+		end
 
-	rep_len = rep.length
-	if( newstr[i...i+rep_len] == rep ) then
-		newstr[i...i+rep_len] = sub
-		i += rep_len
+		return replace_substring(str, rep, sub, i+1, rep_len) 
 	end
-
-
-	rec_loop(0, newstr)
-
-	return newstr
 end
