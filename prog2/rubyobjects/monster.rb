@@ -72,7 +72,7 @@ end
 class Goblin < Monster
 	def initialize(name)
 		hp = rand(4..12)
-		ap = rand(8..10)
+		ap = rand(2..10)
 		super(name, hp, ap)
 	end
 end
