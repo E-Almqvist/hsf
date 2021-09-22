@@ -2,6 +2,6 @@
 
 require "sinatra"
 
-get("/") do
+get("/hello") do
 	return "Hello friend."
 end
