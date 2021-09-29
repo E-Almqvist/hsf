@@ -34,3 +34,11 @@ get("/fruits") do
 	response = "<ul>#{listitems}</ul>"
 	return response
 end
+
+get("/hello") do
+	return "Hello!"
+end
+
+get("/hej") do
+	redirect to("/hello")
+end
