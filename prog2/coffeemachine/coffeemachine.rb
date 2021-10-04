@@ -1,6 +1,8 @@
 #!/usr/bin/ruby 
 
 class CoffeMachine
+	attr_accessor :location, :change, :coffees, :price, :number_served
+
 	def initialize(location, change, coffees, price)
 		@location = location
 		@change = change
@@ -16,7 +18,7 @@ class CoffeMachine
 			puts("Total amount served: #{@number_served}")
 
 			print("Insert coins: ")
-			coins = await_payment()
+			await_payment()
 		else
 			puts("Inget kaffe kvar :(")
 		end
@@ -32,18 +34,9 @@ class CoffeMachine
 			x = t.split(":")
 			coin_hash[x[0].to_i] = x[1].to_i
 		end
-
+		
 		@change = @change.merge(coin_hash)
-		sum, d = verify_payment(coin_hash)
-
-		if( d > 0 ) then
-			dispense_change(d)
-			dispense_coffe()
-		elsif( d < 0 ) then
-			puts("Not enough money")
-		else
-			dispense_coffe()
-		end
+		verify_payment(coin_hash)
 	end
 
 	private def verify_payment(coin_hash)
@@ -51,32 +44,39 @@ class CoffeMachine
 		coin_hash.each do |key, value|
 			sum += value*key
 		end
+		
+		delta = sum - @price
 
-		return sum, sum - @price
-	end
-
-	private def calculate_change(d)
-		@change.each do |type, amount|	
-			amount = d.to_f/type
-
-			if( amount.to_i == amount && amount <= @change[type] ) then
-				return type, amount.to_i
-			else
-				next
-			end
-		end
-		return nil, nil
-	end
-
-	private def dispense_change(d)
-		cointype, amount = calculate_change(d)
-		if( cointype ) then
-			puts("Här är din change:")
-			@change[cointype] -= amount
-			puts("-> #{amount}st #{cointype} kr")
+		if( delta > 0 ) then
+			dispense_change(delta)
+			dispense_coffe()
+		elsif( delta < 0 ) then
+			puts("Not enough money")
 		else
-			puts("Kan ej ge tillbaka någon change, tack för pengarna.")
+			dispense_coffe()
 		end
+	end
+		
+
+	private def calculate_change(delta)
+		coin_return = {}
+		@change.each do |type, count|	
+			puts("adhfio: #{type} #{count}")
+			amount = delta/type
+
+			coin_return[type] = amount
+			@change[type] -= amount
+			delta %= type
+			next
+		end
+
+		return coin_return
+	end
+
+	private def dispense_change(delta)
+		coin_return = calculate_change(delta)
+		puts("Här är din change:")
+		puts("-> #{coin_return}")
 	end
 
 	private def dispense_coffe()
@@ -90,5 +90,5 @@ class CoffeMachine
 	end
 end
 
-x = CoffeMachine.new("hej", {10=>2, 1=>100}, 5, 10)
+x = CoffeMachine.new("hej", {10=>2, 1=>100}, 5, 15)
 x.prompt_for_payment
