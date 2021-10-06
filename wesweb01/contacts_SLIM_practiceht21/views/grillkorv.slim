@@ -1,0 +1,16 @@
+- banankey.each do |person|
+  article.user-card
+    .profile-img
+      img alt="#{person[:name]}" src="img/#{person[:image_src]}.jpg"
+
+    ul
+      li 
+        p #{person[:name]}
+      li 
+        p #{person[:mail]}
+      li 
+        p #{person[:phone]}
+      li 
+        p #{person[:department]}
+
+

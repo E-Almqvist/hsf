@@ -7,6 +7,9 @@ get("/") do
 
 	# 1: Hämta alla data ifrån "data/user_data.csv"
 	lines = File.readlines("data/user_data.csv")
+	lines2 = File.readlines("data/user_data2.csv")
+
+	lines = lines.concat lines2 
 
 	# 2: Gör om datastrukturen till en ny dubbelarray
 	double_array = lines.map do | human_string |
