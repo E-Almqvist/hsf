@@ -23,24 +23,31 @@ class Game < Gosu::Window
 		@width, @height = width, height
 		self.caption = "Test | #{width}x#{height}"
 
-		@arch = Arch.new("arch.png", 0, 0, 0, 0.1, -0.8)
+		@arch = Arch.new("arch.png", 2, 0, 0, 0.1, -0.8)
+
 	end
 
 	def update
+
 		@arch.xspeed += @arch.xaccel
 		@arch.yspeed += @arch.yaccel
+
+		if( @arch.y >= self.height - @arch.height || @arch.y < 0 ) then
+			@arch.yspeed *= @arch.ela
+		end
+
+		if( @arch.x >= self.width - @arch.width || @arch.x < 0 ) then
+			@arch.xspeed *= @arch.ela
+		end
 
 		@arch.x += @arch.xspeed 
 		@arch.y += @arch.yspeed 
 
-		if( @arch.y > self.height - @arch.height ) then
-			@arch.yspeed *= @arch.ela
-		end
 
 		if( @arch.x > self.width - @arch.width ) then
 			@arch.x = self.width - @arch.width
 		end
-		puts("#{@arch.x}, #{@arch.y}")
+		puts("#{@arch.x}, #{@arch.y} | xs: #{@arch.xspeed}, ys: #{@arch.yspeed}")
 	end
 
 	def draw
