@@ -40,23 +40,28 @@ class Game < Gosu::Window
 	attr_accessor :caption
 	attr_reader :width, :height
 
-	def initialize(width, height)
+	def initialize(width, height, physobjs = [])
 		super width, height
 		@width, @height = width, height
 		self.caption = "Test | #{width}x#{height}"
-
-		@arch = Arch.new("arch.png", 10, 0, 0, 0.1, -0.8)
-
+		@physobjs = physobjs
 	end
 
 	def update
-		@arch.physics(self.width, self.height)
+		@physobjs.each do |obj| 
+			obj.physics(self.width, self.height) 
+		end
 	end
 
 	def draw
-		@arch.draw(@arch.x, @arch.y, 0)
+		@physobjs.each do |obj| 
+			obj.draw(obj.x, obj.y, 0)
+		end
 	end
 end
 
-game = Game.new(640, 480)
+@arch = Arch.new("arch.png", 10, 0, 0, 0.1, -0.8)
+@arch2 = Arch.new("arch.png", -10, 0, 0, 0.1, -0.8, 164)
+
+game = Game.new(640, 480, [@arch, @arch2])
 game.show
