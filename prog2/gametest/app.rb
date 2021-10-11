@@ -12,6 +12,28 @@ class Arch < Gosu::Image
 		@ela = ela
 		@width, @height = 64, 64
 	end
+
+	def physics(width, height)
+		self.xspeed += self.xaccel
+		self.yspeed += self.yaccel
+
+		if( self.y >= height - self.height || self.y < 0 ) then
+			self.yspeed *= self.ela
+		end
+		if( self.x >= width - self.width || self.x < 0 ) then
+			self.xspeed *= self.ela
+		end
+
+		self.x += self.xspeed 
+		self.y += self.yspeed 
+
+		self.x = self.x.round(1)
+		self.y = self.y.round(1)
+
+		self.xspeed = self.xspeed.round(1)
+		self.yspeed = self.yspeed.round(1)
+
+	end
 end
 
 class Game < Gosu::Window
@@ -23,28 +45,12 @@ class Game < Gosu::Window
 		@width, @height = width, height
 		self.caption = "Test | #{width}x#{height}"
 
-		@arch = Arch.new("arch.png", 2, 0, 0, 0.1, -0.4)
+		@arch = Arch.new("arch.png", 10, 0, 0, 0.1, -0.8)
 
 	end
 
 	def update
-
-		@arch.xspeed += @arch.xaccel
-		@arch.yspeed += @arch.yaccel
-
-		if( @arch.y >= self.height - @arch.height || @arch.y < 0 ) then
-			@arch.yspeed *= @arch.ela
-		end
-
-		if( @arch.x >= self.width - @arch.width || @arch.x < 0 ) then
-			@arch.xspeed *= -0.1
-		end
-
-		@arch.x += @arch.xspeed 
-		@arch.y += @arch.yspeed 
-
-
-		puts("#{@arch.x}, #{@arch.y} | xs: #{@arch.xspeed}, ys: #{@arch.yspeed}")
+		@arch.physics(self.width, self.height)
 	end
 
 	def draw
