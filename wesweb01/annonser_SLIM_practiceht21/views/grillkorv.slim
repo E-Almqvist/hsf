@@ -1,0 +1,31 @@
+- items.each do |item|
+    article.annons
+        .image 
+            p.tshirt-text #{item[:name]}
+        footer 
+            label Price
+            span #{item[:price]}
+            
+            label ...or trade for:
+            span #{item[:animal]}
+
+            label Username 
+            span #{item[:id]} <img class="avatar" src="#{item[:avatar]}">
+
+            label Contact 
+            span #{item[:email]}
+
+            label City 
+            span #{item[:city]}
+
+            label Quantity 
+            form action="/" method="GET"
+                input placeholder="0" type="number"
+                input type="button" value="add"
+            
+            //img src=#{item[:avatar]}
+           
+
+
+
+
