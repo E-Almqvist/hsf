@@ -5,6 +5,8 @@ require "slim"
 
 load "db_parse.rb"
 
-get("/") do
-	# slim(:tag, locals: {key: data})
+person_register = get_db() # get all the parsed data
+
+get "/" do
+	slim(:person, locals: {persondata: person_register})
 end

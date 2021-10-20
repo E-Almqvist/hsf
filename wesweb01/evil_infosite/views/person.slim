@@ -1,0 +1,7 @@
+- persondata.each do |data|
+  article.person
+    img.avatar src="#{data[:avatar_url]}"
+
+    .info
+      h1 #{data[:fname]} #{data[:lname]}
+      label IPv4 Address: #{data[:ipv4]}
