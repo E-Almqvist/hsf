@@ -4,4 +4,25 @@
 
     .info
       h1 #{data[:fname]} #{data[:lname]}
-      label IPv4 Address: #{data[:ipv4]}
+      ul
+        li 
+          label Email: 
+          a href="mailto:#{data[:email]}" = data[:email]
+        li
+          label Age: 
+          span #{data[:age]}
+        li
+          label IPv4 Address: 
+          a href="https://api.iplocation.net/?ip=#{data[:ipv4]}" target="_blank" = data[:ipv4]
+        li
+          label Movie title: 
+          a href="https://www.imdb.com/find?q=#{data[:movie_title]}" target="_blank" = data[:movie_title]
+        li
+          label Role: 
+          span #{data[:role]}
+        li
+          label Visiting Frequency: 
+          span #{data[:freq]}
+        li
+          label Gender: 
+          span #{data[:gender]}

@@ -2,14 +2,27 @@
 
 DATA_FILE_PATH = "data/evil_data.csv"
 
+CSV_REGEX = /(?!\s*$)\s*(?:'([^'\\]*(?:\\[\S\s][^'\\]*)*)'|"([^"\\]*(?:\\[\S\s][^"\\]*)*)"|([^,'"\s\\]*(?:\s+[^,'"\s\\]+)*))\s*(?:,|$)/
+
 def get_db
 	person_register = []
 
-	person_strings = File.readlines(DATA_FILE_PATH).map do |str| 
-		str.chomp.split(",")[1..-1]
+	# Go through each line in the .csv file
+	person_strings = File.readlines(DATA_FILE_PATH).map do |person| 
+		# Use magic regex to parse the csv, this has to be done becuase
+		# the .csv contains values with commas in them.
+		# [1..-1] because first element is the index which I can 
+		# get from the .each method (it is not needed, therefore I remove it)
+		person.chomp.scan(CSV_REGEX)[1..-1].map do |arr|
+			# String.scan will return an array with each match
+			# inside it. Remove all nil (those groups did not match)
+			arr = arr.reject do |elem| elem == nil end
+
+			# Take the best first value, this should probably be
+			# improved. Magic word: TODO: improve this
+			arr[0]
+		end
 	end
-	# [1..-1] because first element is the index which I can get from the .each method (it
-	# is not needed, therefore I remove it)
 
 	person_strings.each do |person|
 		person_register << {
@@ -22,7 +35,7 @@ def get_db
 			avatar_url:	person[6], # Avatar image URL
 			freq:		person[7], # Frequency (visiting)
 			role:		person[8], # Role (job title/academic)
-			gender:		person[9]  # Gender
+			gender:		person[9]# Gender
 
 		}	
 	end
