@@ -12,6 +12,11 @@ html
   body
     h1 Evil Info Site
     h2 A person registry. No we don't care about GDPR.
-    .persons-container
-      == yield
+    a href="/loginpage" Login
+    a href="/registerpage" Register
+    - if(session[:username] != "") then
+        h1 Hello, #{session[:username]}
+    - if(session[:msg] != "") then
+        h1 = session[:msg]
+    == yield
 
