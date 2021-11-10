@@ -1,22 +1,38 @@
 doctype html
 html
   head
-    title Evil Info Site 
+    title E Corp 
     meta charset="UTF-8"
     meta name="viewport" content="width=device-width, initial-scale=1.0"
     // meta name="keywords" content="template language"
     // meta name="author" content="author"
     link rel="icon" type="image/png" href="favicon.png"
     link rel="stylesheet" type="text/css" href="css/style.css"
+  
 
   body
-    h1 Evil Info Site
+    h1 E Corp 
     h2 A person registry. No we don't care about GDPR.
-    a href="/loginpage" Login
-    a href="/registerpage" Register
-    - if(session[:username] != "") then
-        h1 Hello, #{session[:username]}
-    - if(session[:msg] != "") then
-        h1 = session[:msg]
+
+    - if(session[:username] != nil) then
+      .user
+        img.avatar2 src="#{session[:avatar]}" alt="profile"
+        label.logininfo 
+            |Logged in as 
+            a href="/profile" = session[:username]
+
+    - if(session[:msg] != "" && session[:msg] != nil) then
+        p.error = session[:msg]
+    nav
+      ul
+        li
+          a.button href="/" Home
+        li
+          a.button href="/calc" Calculator
+        li
+          a.button href="/loginpage" Login
+        li
+          a.button href="/registerpage" Register
+    hr
     == yield
 

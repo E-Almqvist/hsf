@@ -1,0 +1,24 @@
+.calc-wrapper
+  article.calculator
+        h1 Evil Calculator
+
+        .calc-equ-wrapper
+          form action="/calculate" method="post"
+            input type="number" name="number1" placeholder="Number #1"
+            select name="op"
+              option value="+" selected="selected" = "+"
+              option value="-" = "-"
+              option value="*" = "*"
+              option value="/" = "/"
+            input type="number" name="number2" placeholder="Number #2"
+            input type="submit" value="Calculate!"
+          label = "= #{session[:calc_result]}"
+
+  article.history
+    - if( session[:history] != nil ) then
+      h2 History
+      ul
+        - session[:history].reverse_each do |c|
+            li
+              p = "#{c[:number1]} #{c[:op]} #{c[:number2]} = #{c[:result]}"
+

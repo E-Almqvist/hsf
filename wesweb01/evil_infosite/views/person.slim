@@ -1,7 +1,6 @@
 .persons-container
   - persondata.each do |data|
     article.person
-      img.avatar src="#{data[:avatar_url]}"
 
       .info
         h1 #{data[:fname]} #{data[:lname]}
@@ -27,3 +26,5 @@
           li
             label Gender: 
             span #{data[:gender]}
+
+      img.avatar src="#{data[:avatar_url]}"

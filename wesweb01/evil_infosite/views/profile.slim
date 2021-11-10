@@ -1,0 +1,10 @@
+article
+  - if(session[:username] != nil) then
+      h1 Logged in as #{session[:username]} 
+
+      form action="/updateavatar" method="post"
+        input type="text" name="avatar_url" placeholder="Picture URL"
+        input type="submit" value="Update avatar"
+
+      form action="/logout" method="post"
+        input type="submit" value="Logout"
