@@ -1,0 +1,10 @@
+h1 All Albums
+
+
+ol
+  - albums.each do |album|
+    li 
+      a href="albums/#{album['AlbumId']}" #{album["Title"]}
+      
+      
+            
