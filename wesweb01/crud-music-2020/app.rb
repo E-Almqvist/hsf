@@ -18,16 +18,13 @@ require "sqlite3"
 #6. Skapa funktionalitet för att uppdatera artistinformation
 
 
-
-db = SQLite3::Database.new("db/chinook-crud.db")
-db.results_as_hash = true
-
-
 get "/" do
 	slim(:start)
 end 
 
 get "/albums" do
+	db = SQLite3::Database.new("db/chinook-crud.db")
+	db.results_as_hash = true
 	result = db.execute("SELECT * FROM albums")
 	p result
 	slim(:"albums/index", locals: {albums: result})
@@ -35,9 +32,10 @@ end
 
 get "/albums/:id" do
 	id = params[:id].to_i
+	db = SQLite3::Database.new("db/chinook-crud.db")
+	db.results_as_hash = true
 	result = db.execute("SELECT * FROM albums WHERE ArtistId = ?", id).first
-	artist = db.execute("SELECT Name FROM artists WHERE ArtistId IN (SELECT ArtistId FROM Albums WHERE AlbumId = ?)", id).first
-	slim(:"albums/show",locals: {result: result, artist: artist})
+	slim(:"albums/show",locals: {result: result})
 end
 
 
