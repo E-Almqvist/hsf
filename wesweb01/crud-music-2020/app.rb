@@ -17,24 +17,25 @@ require "sqlite3"
 
 #6. Skapa funktionalitet för att uppdatera artistinformation
 
-db_cache = SQLite3::Database.new("db/chinook-crud.db") # behöver inte skapa nya handlers varje gång vi ska "titta" i databasen
-db_cache.results_as_hash = true
-# Har därmed en "cache"
 
 get "/" do
 	slim(:start)
 end 
 
 get "/albums" do
-	result = db_cache.execute("SELECT * FROM albums")
+	db = SQLite3::Database.new("db/chinook-crud.db")
+	db.results_as_hash = true
+	result = db.execute("SELECT * FROM albums")
 	p result
-	slim( :"albums/index", locals: { albums: result } )
+	slim(:"albums/index", locals: {albums: result})
 end
 
 get "/albums/:id" do
 	id = params[:id].to_i
-	result = db_cache.execute("SELECT * FROM albums WHERE ArtistId = ?", id).first
-	slim( :"albums/show", locals: { result: result} )
+	db = SQLite3::Database.new("db/chinook-crud.db")
+	db.results_as_hash = true
+	result = db.execute("SELECT * FROM albums WHERE ArtistId = ?", id).first
+	slim(:"albums/show",locals: {result: result})
 end
 
 
