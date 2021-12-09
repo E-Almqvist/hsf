@@ -17,24 +17,51 @@ require "sqlite3"
 
 #6. Skapa funktionalitet för att uppdatera artistinformation
 
-db = SQLite3::Database.new("db/chinook-crud.db")
-db.results_as_hash = true
 
 get "/" do
 	slim(:start)
 end 
 
 get "/albums" do
+	db = SQLite3::Database.new("db/chinook-crud.db")
+	db.results_as_hash = true
 	result = db.execute("SELECT * FROM albums")
 	p result
 	slim(:"albums/index", locals: {albums: result})
 end
 
-get "/albums/:id" do
+get "/albums/new" do
+	slim(:"albums/new")
+end
+
+post "/albums/new" do
+	db = SQLite3::Database.new("db/chinook-crud.db")
+	db.results_as_hash = true
+	title, art_id = params[:title], params[:artist_id].to_i
+	db.execute("INSERT INTO albums (Title, ArtistId) VALUES (?,?)", title, art_id)
+
+	redirect "/albums"
+end
+
+post "/albums/:id/delete" do
+	db = SQLite3::Database.new("db/chinook-crud.db")
+	db.results_as_hash = true
+
 	id = params[:id].to_i
-	result = db.execute("SELECT * FROM albums WHERE ArtistId = ?", id).first
-	artist = db.execute("SELECT Name FROM artists WHERE ArtistId IN (SELECT ArtistId FROM Albums WHERE AlbumId = ?)", id).first
+	db.execute("DELETE FROM albums WHERE AlbumId = ?", id)
+
+	redirect "/albums"
+end
+
+get "/albums/:id" do
+	db = SQLite3::Database.new("db/chinook-crud.db")
+	db.results_as_hash = true
+	id = params[:id].to_i
+	result = db.execute("SELECT * FROM albums WHERE AlbumId = ?", id).first  
+	artist = db.execute("SELECT Name FROM artists WHERE ArtistId IN (SELECT ArtistId FROM albums WHERE AlbumId = ?)", id).first
 	slim(:"albums/show", locals: {result: result, artist: artist})
 end
+
+
 
 
