@@ -1,5 +1,8 @@
-h1 = result or ""
+h1 = "Album: #{album['Title']}"
+h2 Created by: #{artist["Name"]}.
 
-p Albumet som du har sökt efter heter #{result["Title"]}.
-// p Artisten som du har sökt efter heter #{result["ArtistId"]}.
-p Artisten som du har sökt efter heter #{artist["Name"]}.
+
+form.inline action="/albums/#{album['AlbumId']}/edit" method="get"
+  input type="submit" value="Edit"
+form.inline action="/albums/#{album['AlbumId']}/delete" method="post"
+  input type="submit" value="Remove"

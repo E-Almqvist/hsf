@@ -1,4 +1,6 @@
-form action="/albums/#{album['AlbumId']}/update" method="post"
+form.page action="/albums/#{album['AlbumId']}/update" method="post"
+  span Album Title
   input type="text" name="new_title" value="#{album['Title']}" placeholder="Album title"
+  span Artist ID
   input type="number" name="new_artistid" value="#{album['ArtistId']}" placeholder="Artist ID"
   input type="submit" value="Update"

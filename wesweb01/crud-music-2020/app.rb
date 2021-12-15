@@ -27,7 +27,6 @@ get "/albums" do
 	db = SQLite3::Database.new("db/chinook-crud.db")
 	db.results_as_hash = true
 	result = db.execute("SELECT * FROM albums")
-	p result
 	slim(:"albums/index", locals: {albums: result})
 end
 
@@ -78,9 +77,9 @@ get "/albums/:id" do
 	db = SQLite3::Database.new("db/chinook-crud.db")
 	db.results_as_hash = true
 	id = params[:id].to_i
-	result = db.execute("SELECT * FROM albums WHERE AlbumId = ?", id).first  
+	album = db.execute("SELECT * FROM albums WHERE AlbumId = ?", id).first  
 	artist = db.execute("SELECT Name FROM artists WHERE ArtistId IN (SELECT ArtistId FROM albums WHERE AlbumId = ?)", id).first
-	slim(:"albums/show", locals: {result: result, artist: artist})
+	slim(:"albums/show", locals: {album: album, artist: artist})
 end
 
 

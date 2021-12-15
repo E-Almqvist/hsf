@@ -5,8 +5,9 @@ ol
   - albums.each do |album|
     li 
       a href="albums/#{album['AlbumId']}" #{album["Title"]}
-      a href="albums/#{album['AlbumId']}/edit" Edit
-      form action="albums/#{album['AlbumId']}/delete" method="post"
+      form.inline action="albums/#{album['AlbumId']}/edit" method="get"
+        input type="submit" value="Edit"
+      form.inline action="albums/#{album['AlbumId']}/delete" method="post"
         input type="submit" value="Remove"
 
       
