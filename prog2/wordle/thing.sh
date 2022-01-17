@@ -1,11 +1,8 @@
 #!/usr/bin/bash
 
-list=/usr/share/dict/words
+words=/usr/share/dict/words
 
-words=$(cat $list | grep -E '^(\w{5})$')
-echo $words > fivewords.txt
+thing=$(ruby calc.rb $1 $2)
 
-for word in $words 
-do
-	
-done
+echo $thing
+cat $words | awk '{print tolower($0)}' | grep -E '${thing}(\w+)'

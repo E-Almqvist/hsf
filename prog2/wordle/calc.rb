@@ -1,12 +1,15 @@
 #!/usr/bin/ruby -w
 
-words = File.read("fivewords.txt")
+words = File.read("/usr/share/dict/words")
 words.chomp!
 words.downcase!
 words = words.split(" ")
 words = words.map do |w|
-	w.split("")
+	if(w.length == 5) then
+		w.split("")
+	end
 end
+words.compact!
 
 char_count = Hash.new(0)
 charpos_count = Hash.new()
@@ -21,24 +24,31 @@ words.each do |word|
 	end
 end
 
-MIN_POS = 0
-MAX_POS = 4
 
 most_common_pos = Hash.new
-charpos_count.each do |char, pos_data|
-	pos_data.each do |pos, count|	
-		if( most_common_pos[pos] == nil ) then 
-			most_common_pos[pos] = {char: char, count: count} 
-			next
-		elsif( count > most_common_pos[pos][:count] ) then
-			most_common_pos[pos] = {
-				char: char,
-				count: count
-			}
+
+def calc_stuff(charpos_count, most_common_pos)
+	charpos_count.each do |char, pos_data|
+		pos_data.each do |pos, count|	
+			if( most_common_pos[pos] == nil ) then 
+				most_common_pos[pos] = {char: char, count: count} 
+				next
+			elsif( count > most_common_pos[pos][:count] ) then
+				most_common_pos[pos] = {
+					char: char,
+					count: count
+				}
+			end
 		end
 	end
+	return most_common_pos
 end
 
-sorted_count = char_count.sort_by {|k, v| v}
-p sorted_count
-p most_common_pos
+calc_stuff(charpos_count, most_common_pos) 
+
+pos1 = ARGV[0].to_i
+pos2 = ARGV[1].to_i
+(pos1..pos2).each do |i|
+	print "#{most_common_pos[i][:char]}"
+end
+puts ""
