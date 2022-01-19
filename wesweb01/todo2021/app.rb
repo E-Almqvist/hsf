@@ -46,10 +46,14 @@ get "/todos/:tid/edit" do
 	db.results_as_hash = true
 	todo = db.execute("SELECT * FROM Todos WHERE id = ?", tid).first  
 
-	if( todo["user_id"] == session[:id] ) then
-		slim :"todos/edit", locals: {todo: todo}
-	else
-		"401, access denied!"
+	begin
+		if( todo["user_id"] == session[:id] ) then
+			slim :"todos/edit", locals: {todo: todo}
+		else
+			"401, access denied!"
+		end
+	rescue => err
+		"500, TODO not found."
 	end
 end
 
