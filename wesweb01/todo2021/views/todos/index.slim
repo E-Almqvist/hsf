@@ -1,0 +1,19 @@
+h2 Create TODO:
+form action="/todos/new" method="post"
+  input type="text" name="content" placeholder="I need to do..."
+  input type="hidden" name="id" value="#{session[:id]}"
+  input type="submit" value="Submit"
+
+h2 Your TODOS:
+ol
+  - todos.each do |todo|
+      li 
+        label = todo["content"]
+
+        form.inline action="todos/#{todo["id"]}/edit" method="get"
+          input type="submit" value="Edit"
+
+        form.inline action="todos/#{todo["id"]}/delete" method="post"
+          input type="hidden" name="user_id" value="#{session[:id]}"
+          input type="hidden" name="todo_id" value="#{todo["id"]}"
+          input type="submit" value="Remove"

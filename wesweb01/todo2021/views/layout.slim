@@ -9,6 +9,8 @@ html lang="en"
     nav
       a href="/" Register
       a href="/showlogin" Login
+      - if( session[:id] != nil ) then
+      		a href="/todos" Todos
     h1 Welcome to Todos!
 
     == yield
