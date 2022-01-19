@@ -46,9 +46,14 @@ end
 
 calc_stuff(charpos_count, most_common_pos) 
 
-pos1 = ARGV[0].to_i
-pos2 = ARGV[1].to_i
-(pos1..pos2).each do |i|
-	print "#{most_common_pos[i][:char]}"
+if( ARGV.length >= 2 ) then
+	pos1 = ARGV[0].to_i
+	pos2 = ARGV[1].to_i
+	(pos1..pos2).each do |i|
+		print "#{most_common_pos[i][:char]}"
+	end
+	puts ""
+else
+	p most_common_pos
+	p char_count
 end
-puts ""
