@@ -5,46 +5,61 @@ module RSA
 
 	class Key
 		def initialize(p1, p2)
-			@p1 = p1
-			@p2 = p2
+			puts "Generating key pair..."
 			@n = p1 * p2
 			@phi = (p1-1)*(p2-1)
 
 			(2...@phi).each do |e|
-				if( e.gcd(@phi) == 1 ) then
+				dom = e.gcd(@phi)
+
+				if dom == 1 then
 					@e = e
 					break
 				end
 			end
 
-			@d = RSA.mod_inv(@e, @phi)
+			@d = RSA.mod_inv(@e, @n)
 		end
 
 		def pubkey
-			return @e, @phi
+			return @e, @n
 		end
 
 		def privkey
-			return @d, @phi
+			return @d, @n
 		end
 	end
 
-	def self.encrypt(text, key)
-		n, mod = key.pubkey
-		p [n, mod]
-		text_enc = ""
-		text.split("").each_with_index do |c, i|
-			charint = c.ord ** n
-			p charint
-			charint %= mod
-			p charint
-			puts "enc #{c.ord} -> #{charint}"
-			text_enc += charint.chr
+	class Data < Array
+		attr_reader :data
+		def initialize(data)
+			super data
+			if data.class == String then
+				self = data.split("")
+				self = self.map do |c|
+					c.to_i
+				end
+			end
 		end
 
-		return text_enc
-	end
+		def inspect
+			self.join " "
+		end
 
-	def self.decrypt(text)
+		def encrypt(key)
+			e, mod = key.pubkey
+			crypt = []	
+			text.split("").each_with_index do |c, i|
+				c = c.ord ** e
+				c %= mod
+				crypt << charint
+			end
+
+			return crypt 
+		end
+
+		def encrypt!(key)
+			self = self.encrypt(key)
+		end
 	end
 end
