@@ -3,7 +3,7 @@
 require_relative "rsa"
 
 Primes = File.read("primes.txt").chomp.split(",").map do |pstr|
-	pstr.to_i
+	p = pstr.to_i
 end
 
 puts "Fetching random primes..."
@@ -22,6 +22,6 @@ data.encrypt!(key.pubkey)
 puts "Encrypted bytes: #{data.raw}"
 
 data.decrypt!(key.privkey)
-puts data.raw
+puts "Decrypted bytes: #{data.raw}"
 p data.data
 

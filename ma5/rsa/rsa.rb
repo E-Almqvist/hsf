@@ -18,6 +18,7 @@ module RSA
 				end
 			end
 			@e = enc.sample
+			p enc
 
 			@d = RSA.n_inv(@e, @n)
 			puts "e=#{@e} d=#{@d}"
