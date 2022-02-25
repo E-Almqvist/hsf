@@ -1,14 +1,37 @@
 #!/usr/bin/ruby -w
-
 require_relative "rsa"
 
-Primes = File.read("primes.txt").chomp.split(",").map do |pstr|
+Primes = File.read("smallprimes.txt").chomp.split(",").map do |pstr|
 	p = pstr.to_i
 end
 
-puts "Fetching random primes..."
-p1, p2 = Primes.sample, Primes.sample
-p1, p2 = 11, 13
+def get_random_primes
+	puts "Fetching random primes..."
+	p1, p2 = Primes.sample, Primes.sample
+	return p1, p2
+end
+
+def choose_primes
+	print "1st prime: "
+	p1 = gets.chomp.to_i
+	print "2nd prime: "
+	p2 = gets.chomp.to_i
+
+	return p1, p2
+end
+
+puts "[1] Random primes"
+puts "[2] Choose primes"
+ch = gets.chomp.to_i
+case ch
+when 1
+	p1, p2 = get_random_primes
+when 2
+	p1, p2 = choose_primes
+else
+	p1, p2 = get_random_primes
+end
+
 puts "p1=#{p1}, p2=#{p2}"
 puts
 
@@ -23,5 +46,4 @@ puts "Encrypted bytes: #{data.raw}"
 
 data.decrypt!(key.privkey)
 puts "Decrypted bytes: #{data.raw}"
-p data.data
 
