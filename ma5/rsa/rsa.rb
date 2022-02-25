@@ -18,16 +18,6 @@ module RSA
 	end
 
 	class Key
-		private def find_d
-			puts "Generating private key..."
-			begin
-				return @d
-			rescue RuntimeError
-				puts "d not found, retrying..."
-				retry
-			end
-		end
-
 		def initialize(p1, p2)
 			puts "Generating key pair..."
 			@n = p1 * p2
