@@ -31,7 +31,7 @@ module RSA
 		def initialize(p1, p2)
 			puts "Generating key pair..."
 			@n = p1 * p2
-			@phi = (p1-1).lcm(p2-1)
+			@phi = (p1-1)*(p2-1)
 
 			enc = []
 			(2...@phi).each do |e|
