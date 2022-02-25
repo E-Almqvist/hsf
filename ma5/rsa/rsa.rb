@@ -63,13 +63,17 @@ module RSA
 			return str
 		end
 
-		def inspect(endchar="\n")
-			pattern = "c" * @data.length
-			return "\'#{@data.pack(pattern)}\'#{endchar}"
+		def to_si
+			return @data.join " "
 		end
 
-		def encrypt(pubkey)
-			e, n = pubkey
+		def to_s
+			pattern = "c" * @data.length
+			return @data.pack(pattern)
+		end
+
+		private def crypt(key)
+			e, n = key
 			crypt = []	
 			@data.each do |c|
 				cr = (c ** e) % n
@@ -79,23 +83,20 @@ module RSA
 			return crypt 
 		end
 
-		def decrypt(privkey)
-			d, n = privkey 
-			crypt = []	
-			@data.each do |c|
-				cr = (c ** d) % n
-				crypt << cr
-			end
-
-			return crypt 
+		def encrypt(key)
+			self.crypt(key.pubkey)
 		end
 
-		def encrypt!(pubkey)
-			@data = self.encrypt(pubkey)
+		def decrypt(key)
+			self.crypt(key.privkey)
 		end
 
-		def decrypt!(privkey)
-			@data = self.decrypt(privkey)
+		def encrypt!(key)
+			@data = self.encrypt(key)
+		end
+
+		def decrypt!(key)
+			@data = self.decrypt(key)
 		end
 	end
 end

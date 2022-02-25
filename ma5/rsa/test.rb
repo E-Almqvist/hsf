@@ -42,11 +42,13 @@ msg = gets.chomp
 data = RSA::Data.new(msg)
 puts
 
-data.encrypt!(key.pubkey)
-puts "Encrypted bytes: #{data.raw}"
+data.encrypt!(key)
+puts "Encrypted bytes (hex): #{data.raw}"
+puts "Encrypted bytes (dec): #{data.to_si}"
 puts
 
-data.decrypt!(key.privkey)
-puts "Decrypted bytes: #{data.raw}"
-puts "Decrypted msg: #{data.inspect}"
+data.decrypt!(key)
+puts "Decrypted bytes (hex): #{data.raw}"
+puts "Decrypted bytes (dec): #{data.to_si}"
+puts "Decrypted msg: #{data.to_s}"
 
