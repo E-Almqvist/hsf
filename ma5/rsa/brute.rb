@@ -1,11 +1,7 @@
-#!/usr/bin/ruby -w
+#!/usr/bin/ruby 
 
-require_relative "rsa.rb"
-# pubkey : 7, 143
-# msg : 81
-
-# find n = 143 with primes
 Primes = File.read("primes.txt").split(",")
+# BigPrimes = File.readlines("bigprimes.txt")
 
 print "Modbase target: "
 target = gets.chomp.to_i

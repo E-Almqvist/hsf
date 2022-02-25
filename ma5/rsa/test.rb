@@ -1,8 +1,8 @@
-#!/usr/bin/ruby -w
+#!/usr/bin/ruby 
 require_relative "rsa"
 
 Primes = File.read("smallprimes.txt").chomp.split(",").map do |pstr|
-	p = pstr.to_i
+	pstr.to_i
 end
 
 def get_random_primes
@@ -40,10 +40,13 @@ print "Message to be encrypted: "
 msg = gets.chomp
 
 data = RSA::Data.new(msg)
+puts
 
 data.encrypt!(key.pubkey)
 puts "Encrypted bytes: #{data.raw}"
+puts
 
 data.decrypt!(key.privkey)
 puts "Decrypted bytes: #{data.raw}"
+puts "Decrypted msg: #{data.inspect}"
 
