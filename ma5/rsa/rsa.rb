@@ -18,6 +18,7 @@ module RSA
 	end
 
 	class Key
+		attr_accessor :e, :d, :n
 		def initialize(p1, p2)
 			puts "Generating key pair..."
 			@n = p1 * p2
@@ -36,7 +37,7 @@ module RSA
 		end
 
 		def inspect
-			"n=#{@n}"
+			"n=#{@n} e=#{@e} d=#{@d}"
 		end
 
 		def pubkey
