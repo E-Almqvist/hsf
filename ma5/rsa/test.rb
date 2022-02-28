@@ -36,6 +36,7 @@ puts "p1=#{p1}, p2=#{p2}"
 puts
 
 key = RSA::Key.new(p1, p2)
+puts key.inspect
 print "Message to be encrypted: "
 msg = gets.chomp
 

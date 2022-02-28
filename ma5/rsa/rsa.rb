@@ -35,6 +35,10 @@ module RSA
 			@d = RSA.modinv(@e, @phi)
 		end
 
+		def inspect
+			"n=#{@n}"
+		end
+
 		def pubkey
 			return @e, @n
 		end
