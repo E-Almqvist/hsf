@@ -88,7 +88,8 @@ $$
 
 \subsection{Uppgifter}
 \begin{enumerate}
-	\item Hitta de olika möjliga värden på $E_n$, och hitta motsvarande vågfunktioner $\wavefun$. Visa grafer över motsvarande sannolikhetsfördelningar för att partikeln skall befinna sig vid olika positioner $x$.
+	\item Hitta de olika möjliga värden på $E_n$, och hitta motsvarande vågfunktioner $\wavefun$. 
+	\item Visa grafer över motsvarande sannolikhetsfördelningar för att partikeln skall befinna sig vid olika positioner $x$.
 
 	\item Partikelns fullständiga vågfunktion är egentligen även en funktion utav tiden. För en partikel som befinner sig i ett så kallat energiegentillstånd är den fullständiga vågfunktionen $\fullshrodequ$
 		Dock innebär den extra faktorn $\shrodtime$ inte någon intressant tidsutveckling av sannolikhetsfördelningen eftersom $|\Psi(x, t)|^2 = |\psi_n(x) \shrodtime|^2 = \shrodprob$. Intressantare blir det om en partikel befinner sig i en superposition av energiegentillstånd, tex: $$\Psi(x, t) = A(\psi_1(x)e^{-i \frac{E_1}{\hbar}t} + \psi_2(x) e^{-i \frac{E_2}{\hbar}t})$$ För denna vågfunktion, \emph{bestäm konstanten $A$ sådan att}: $$\int_0^L |\Psi(x, t)|^2 dx = 1.0$$ \emph{Undersök sedan hur sannolikheten att befinna sig i den vänstra delen $0 < x < \frac{L}{2}$, respektive högra $\frac{L}{2} < x < L$ delen av lådan}. Hitta alltså ett uttryck för: $$P(V, t) = \int_0^{\frac{L}{2}} \fullshrodprob dx$$ $$P(H, t) = \int_{\frac{L}{2}}^L \fullshrodprob dx$$
@@ -100,6 +101,28 @@ $$
 
 \section{Uppgiftlösningar}
 \subsection{1}
+
+Enligt Schrödingers ekvation får vi: $\shrodequ$ där $\hbar = \frac{h}{2\pi}$ vilket vi kan substituera i ekvationen och vi får följande:
+
+$$
+\shrodequ, \quad \left[\hbar / \frac{h}{2\pi}\right]
+$$
+$$
+E_n\psi_n(x) = - \frac{\frac{h}{2\pi}}{2m} \frac{d^2 \psi_n}{dx^2} = - \frac{h}{4 \pi m} \left(\frac{d^2 \psi_n}{dx^2}\right)
+$$
+
+där $h$ är Plancks konstant och $m$ är partikelns massa. Väljer därmed att förenkla uttrycket genom att byta ut konstanterna till en variabel (givet att $k = \frac{h}{4 \pi m}$):
+$$
+E_n\psi_n(x) = - \frac{h}{4 \pi m} \left(\frac{d^2 \psi_n}{dx^2}\right), \quad \left[\frac{h}{4 \pi m}/k\right]
+$$
+$$
+E_n\psi_n(x) = -k\left(\frac{d^2 \psi_n}{dx^2}\right)
+$$
+
+Bla bla...
+$$
+\psi_n(x) = \sin(x) + ?
+$$
 
 
 \end{document}
