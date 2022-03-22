@@ -1,0 +1,105 @@
+\documentclass{article}
+
+\usepackage[margin=2cm]{geometry}
+\usepackage{titlesec}
+\usepackage{titling}
+\usepackage[hidelinks]{hyperref}
+\usepackage{multicol}
+
+\titleformat{\section}
+{\Large\bfseries}
+{}
+{0em}
+{}[\titlerule]
+
+\titleformat{\subsection}
+{\large\bfseries}
+{}
+{0em}
+{}
+\titlespacing{\subsection}
+{0em}{0em}{.4em}
+
+\titleformat{\subsubsection}[runin]
+{\bfseries}
+{}
+{0em}
+{}[:]
+
+\titlespacing{\subsubsection}
+{0em}{0em}{1em}
+
+\renewcommand{\maketitle}{
+	\begin{center}
+		{\huge\bfseries\thetitle}\\
+		\vspace{1em}
+		{\Large\theauthor} \\
+		\vspace{1em}
+		elalmqvist@gmail.com --- \url{https://wych.dev}
+	\end{center}
+}
+
+% Wave function
+\newcommand{\wavefun}{\psi_n(x)}
+
+% Schrödingers equation
+\newcommand{\shrodequ}{E_n \psi_n(x) = - \frac{\hbar}{2m} \frac{d^2 \psi_n}{dx^2}}
+
+% Probability density for the particle
+\newcommand{\shrodprob}{|\psi_n(x)|^2}
+
+% Time factor thing
+\newcommand{\shrodtime}{e^{-i \frac{E_n}{\hbar} t}}
+
+% Full Schrödinger equation
+\newcommand{\fullshrodequ}{\Psi_n(x, t) = \psi_n(x) \shrodtime}
+
+% Full Schrödinger equation prob density
+\newcommand{\fullshrodprob}{|\Psi_n(x,t)|^2}
+
+
+\begin{document}
+
+\title{Schrödinger ekvationen (partikel i låda)}
+\author{Elias Almqvist}
+
+\maketitle
+\newpage
+
+\section{Uppgiftbeskrivning (taget från dokumentet)}
+En partikel i en låda är en utav de första tillämpningarna man stöter på när man lär sig om kvantfysik. Man betraktar då en partikel (t.ex. en elektron) som befinner sig i en låda med oändligt höga väggar.
+För detta undersöker man partikelns vågfunktion $\wavefun$. Vågfunktionen är i allmänhet en komplex funktion,
+dvs den har både en realdel och en imaginärdel. Vågfunktionens absolutbelopp i kvadrat, $\shrodprob$, represen-
+terar täthetsfunktionen för att partikeln skall befinna sig vid läge $x$ i lådan. Om partikeln befinner sig i ett så
+kallat energiegentillstånd så uppfyller den den tidsoberoende Schrödinger ekvationen:
+\begin{equation}
+	\shrodequ
+\end{equation}
+
+där $E_n$ är partikelns energi, $\hbar = \frac{h}{2\pi}$ och $m$ är partikelns massa.
+Att lådans väggar är oändligt höga innebär att vågfunktionen också behöver uppfylla randvillkoren:
+$$
+\psi_n(0) = \psi_n(L) = 0 \quad \& \quad \psi_n'(0) = \psi_n'(L) = 0 
+$$
+Slutligen, eftersom $\shrodprob$ motsvarar sannolikhetstätheten för att partikeln skall befinna sig vid position $x$, så måste det gälla att:
+$$
+\int_0^L \shrodprob dx\ = 1.0
+$$
+
+\subsection{Uppgifter}
+\begin{enumerate}
+	\item Hitta de olika möjliga värden på $E_n$, och hitta motsvarande vågfunktioner $\wavefun$. Visa grafer över motsvarande sannolikhetsfördelningar för att partikeln skall befinna sig vid olika positioner $x$.
+
+	\item Partikelns fullständiga vågfunktion är egentligen även en funktion utav tiden. För en partikel som befinner sig i ett så kallat energiegentillstånd är den fullständiga vågfunktionen $\fullshrodequ$
+		Dock innebär den extra faktorn $\shrodtime$ inte någon intressant tidsutveckling av sannolikhetsfördelningen eftersom $|\Psi(x, t)|^2 = |\psi_n(x) \shrodtime|^2 = \shrodprob$. Intressantare blir det om en partikel befinner sig i en superposition av energiegentillstånd, tex: $$\Psi(x, t) = A(\psi_1(x)e^{-i \frac{E_1}{\hbar}t} + \psi_2(x) e^{-i \frac{E_2}{\hbar}t})$$ För denna vågfunktion, \emph{bestäm konstanten $A$ sådan att}: $$\int_0^L |\Psi(x, t)|^2 dx = 1.0$$ \emph{Undersök sedan hur sannolikheten att befinna sig i den vänstra delen $0 < x < \frac{L}{2}$, respektive högra $\frac{L}{2} < x < L$ delen av lådan}. Hitta alltså ett uttryck för: $$P(V, t) = \int_0^{\frac{L}{2}} \fullshrodprob dx$$ $$P(H, t) = \int_{\frac{L}{2}}^L \fullshrodprob dx$$
+
+	\item Gör sedan samma sak för superpositionen av energiegentillstånden 1 och 3: $$\Psi(x, t) = A(\psi_1(x)e^{-i \frac{E_1}{\hbar}t} + \psi_3(x)e^{-i \frac{E_3}{\hbar}t})$$ \emph{På vilket sätt skiljer de sig? Kan du förklara varför?}
+\end{enumerate}
+
+\newpage
+
+\section{Uppgiftlösningar}
+\subsection{1}
+
+
+\end{document}
