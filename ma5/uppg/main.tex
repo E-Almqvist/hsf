@@ -5,6 +5,7 @@
 \usepackage{titling}
 \usepackage[hidelinks]{hyperref}
 \usepackage{multicol}
+\usepackage{amsmath}
 
 \titleformat{\section}
 {\Large\bfseries}
@@ -43,7 +44,7 @@
 \newcommand{\wavefun}{\psi_n(x)}
 
 % Schrödingers equation
-\newcommand{\shrodequ}{E_n \psi_n(x) = - \frac{\hbar}{2m} \frac{d^2 \psi_n}{dx^2}}
+\newcommand{\shrodequ}{E_n \psi_n(x) = - \frac{\hbar^2}{2m} \frac{d^2 \psi_n}{dx^2}}
 
 % Probability density for the particle
 \newcommand{\shrodprob}{|\psi_n(x)|^2}
@@ -69,22 +70,21 @@
 \section{Uppgiftbeskrivning (taget från dokumentet)}
 En partikel i en låda är en utav de första tillämpningarna man stöter på när man lär sig om kvantfysik. Man betraktar då en partikel (t.ex. en elektron) som befinner sig i en låda med oändligt höga väggar.
 För detta undersöker man partikelns vågfunktion $\wavefun$. Vågfunktionen är i allmänhet en komplex funktion,
-dvs den har både en realdel och en imaginärdel. Vågfunktionens absolutbelopp i kvadrat, $\shrodprob$, represen-
-terar täthetsfunktionen för att partikeln skall befinna sig vid läge $x$ i lådan. Om partikeln befinner sig i ett så
+dvs den har både en realdel och en imaginärdel. Vågfunktionens absolutbelopp i kvadrat, $\shrodprob$, representerar täthetsfunktionen för att partikeln skall befinna sig vid läge $x$ i lådan. Om partikeln befinner sig i ett så
 kallat energiegentillstånd så uppfyller den den tidsoberoende Schrödinger ekvationen:
-\begin{equation}
+\begin{equation} \label{shrodequ}
 	\shrodequ
 \end{equation}
 
 där $E_n$ är partikelns energi, $\hbar = \frac{h}{2\pi}$ och $m$ är partikelns massa.
 Att lådans väggar är oändligt höga innebär att vågfunktionen också behöver uppfylla randvillkoren:
-$$
-\psi_n(0) = \psi_n(L) = 0 \quad \& \quad \psi_n'(0) = \psi_n'(L) = 0 
-$$
+\begin{equation} \label{shrodequ_con1}
+	\psi_n(0) = \psi_n(L) = 0 \quad \& \quad \psi_n'(0) = \psi_n'(L) = 0 
+\end{equation}
 Slutligen, eftersom $\shrodprob$ motsvarar sannolikhetstätheten för att partikeln skall befinna sig vid position $x$, så måste det gälla att:
-$$
-\int_0^L \shrodprob dx\ = 1.0
-$$
+\begin{equation} \label{shrodequ_con2}
+	\int_0^L \shrodprob dx\ = 1.0
+\end{equation}
 
 \subsection{Uppgifter}
 \begin{enumerate}
@@ -108,21 +108,30 @@ $$
 \shrodequ, \quad \left[\hbar / \frac{h}{2\pi}\right]
 $$
 $$
-E_n\psi_n(x) = - \frac{\frac{h}{2\pi}}{2m} \frac{d^2 \psi_n}{dx^2} = - \frac{h}{4 \pi m} \left(\frac{d^2 \psi_n}{dx^2}\right)
+E_n\psi_n(x) = - \frac{\left(\frac{h}{2\pi}\right)^2}{2m} \frac{d^2 \psi_n}{dx^2} = - \frac{h^2}{8 \pi^2 m} \left(\frac{d^2 \psi_n}{dx^2}\right)
 $$
 
-där $h$ är Plancks konstant och $m$ är partikelns massa. Väljer därmed att förenkla uttrycket genom att byta ut konstanterna till en variabel (givet att $k = \frac{h}{4 \pi m}$):
+där $h$ är Plancks konstant och $m$ är partikelns massa. Väljer därmed att förenkla uttrycket genom att byta ut konstanterna till en variabel (givet att $k = \frac{h^2}{8 \pi ^2 m}$):
 $$
-E_n\psi_n(x) = - \frac{h}{4 \pi m} \left(\frac{d^2 \psi_n}{dx^2}\right), \quad \left[\frac{h}{4 \pi m}/k\right]
+E_n\psi_n(x) = - \frac{h^2}{8 \pi ^2 m} \left(\frac{d^2 \psi_n}{dx^2}\right), \quad \left[\frac{h^2}{8 \pi ^2 m}/k\right]
 $$
 $$
-E_n\psi_n(x) = -k\left(\frac{d^2 \psi_n}{dx^2}\right)
+E_n\psi_n(x) = -k\left(\frac{d^2 \psi_n}{dx^2}\right), \quad / E_n 
+$$
+$$
+\psi_n(x) = -\frac{k}{E_n} \psi_n''(x)
 $$
 
-Bla bla...
+Schrödinger ekvationen lyder också att vågfunktionen skall följa både ekvation \ref{shrodequ_con1} och \ref{shrodequ_con2} vilket ger 
 $$
-\psi_n(x) = \sin(x) + ?
+	\begin{cases}
+		\int_0^L \shrodprob dx\ = 1.0 & | P(1) \\
+		\psi_n(0) = \psi_n(L) = 0 & | P(2) \\
+		\psi_n'(0) = \psi_n'(L) = 0 & | P(3) 
+	\end{cases}
 $$
+
+Givet att $P(1)$ implicerar det att vågfunktion $\psi_n(x)$ area mellan $0$ och $L$ är $1$ och $P(2)$ samt $P(3)$ gäller vilket ger att det är en stående våg och den har därmed ett visst antal våglängder ($\lambda$) i relation till antal noder ($n$). 
 
 
 \end{document}
