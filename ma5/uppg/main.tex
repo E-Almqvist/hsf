@@ -93,7 +93,7 @@ Slutligen, eftersom $\shrodprob$ motsvarar sannolikhetstätheten för att partik
 	\item Visa grafer över motsvarande sannolikhetsfördelningar för att partikeln skall befinna sig vid olika positioner $x$.
 
 	\item Partikelns fullständiga vågfunktion är egentligen även en funktion utav tiden. För en partikel som befinner sig i ett så kallat energiegentillstånd är den fullständiga vågfunktionen $\fullshrodequ$
-		Dock innebär den extra faktorn $\shrodtime$ inte någon intressant tidsutveckling av sannolikhetsfördelningen eftersom $|\Psi(x, t)|^2 = |\psi_n(x) \shrodtime|^2 = \shrodprob$. Intressantare blir det om en partikel befinner sig i en superposition av energiegentillstånd, tex: $$\Psi(x, t) = A(\psi_1(x)e^{-i \frac{E_1}{\hbar}t} + \psi_2(x) e^{-i \frac{E_2}{\hbar}t})$$ För denna vågfunktion, \emph{bestäm konstanten $A$ sådan att}: $$\int_0^L |\Psi(x, t)|^2 dx = 1.0$$ \emph{Undersök sedan hur sannolikheten att befinna sig i den vänstra delen $0 < x < \frac{L}{2}$, respektive högra $\frac{L}{2} < x < L$ delen av lådan}. Hitta alltså ett uttryck för: $$P(V, t) = \int_0^{\frac{L}{2}} \fullshrodprob dx$$ $$P(H, t) = \int_{\frac{L}{2}}^L \fullshrodprob dx$$
+		Dock innebär den extra faktorn $\shrodtime$ inte någon intressant tidsutveckling av sannolikhetsfördelningen eftersom $|\Psi(x, t)|^2 = |\psi_n(x) \shrodtime|^2 = \shrodprob$. Intressantare blir det om en partikel befinner sig i en superposition av energiegentillstånd, tex: $$\Psi_{1, 2}(x, t) = A(\psi_1(x)e^{-i \frac{E_1}{\hbar}t} + \psi_2(x) e^{-i \frac{E_2}{\hbar}t})$$ För denna vågfunktion, \emph{bestäm konstanten $A$ sådan att}: $$\int_0^L |\Psi(x, t)|^2 dx = 1.0$$ \emph{Undersök sedan hur sannolikheten att befinna sig i den vänstra delen $0 < x < \frac{L}{2}$, respektive högra $\frac{L}{2} < x < L$ delen av lådan}. Hitta alltså ett uttryck för: $$P(V, t) = \int_0^{\frac{L}{2}} \fullshrodprob dx$$ $$P(H, t) = \int_{\frac{L}{2}}^L \fullshrodprob dx$$
 
 	\item Gör sedan samma sak för superpositionen av energiegentillstånden 1 och 3: $$\Psi(x, t) = A\left(\psi_1(x)e^{-i \frac{E_1}{\hbar}t} + \psi_3(x)e^{-i \frac{E_3}{\hbar}t}\right)$$ \emph{På vilket sätt skiljer de sig? Kan du förklara varför?}
 \end{enumerate}
@@ -106,65 +106,110 @@ Slutligen, eftersom $\shrodprob$ motsvarar sannolikhetstätheten för att partik
 Enligt Schrödingers ekvation får vi: $\shrodequ$ där $\hbar = \frac{h}{2\pi}$ vilket vi kan substituera i ekvationen och vi får följande:
 
 $$
-	\shrodequ, \quad \left[\hbar / \frac{h}{2\pi}\right]
+\shrodequ, \quad \left[\hbar / \frac{h}{2\pi}\right]
 $$
 $$
-	E_n\psi_n(x) = - \frac{\left(\frac{h}{2\pi}\right)^2}{2m} \frac{d^2 \psi_n}{dx^2} = - \frac{h^2}{8 \pi^2 m} \left(\frac{d^2 \psi_n}{dx^2}\right)
+E_n\psi_n(x) = - \frac{\left(\frac{h}{2\pi}\right)^2}{2m} \frac{d^2 \psi_n}{dx^2} = - \frac{h^2}{8 \pi^2 m} \left(\frac{d^2 \psi_n}{dx^2}\right)
 $$
 
 där $h$ är Plancks konstant och $m$ är partikelns massa. Väljer därmed att förenkla uttrycket genom att byta ut konstanterna till en variabel (givet att $k = \frac{h^2}{8 \pi ^2 m}$):
 $$
-	E_n\psi_n(x) = - \frac{h^2}{8 \pi ^2 m} \left(\frac{d^2 \psi_n}{dx^2}\right), \quad \left[\frac{h^2}{8 \pi ^2 m}/k\right]
+E_n\psi_n(x) = - \frac{h^2}{8 \pi ^2 m} \left(\frac{d^2 \psi_n}{dx^2}\right), \quad \left[\frac{h^2}{8 \pi ^2 m}/k\right]
 $$
 $$
-	E_n\psi_n(x) = -k\left(\frac{d^2 \psi_n}{dx^2}\right), \quad + HL
+E_n\psi_n(x) = -k\left(\frac{d^2 \psi_n}{dx^2}\right), \quad + HL
 $$
 $$
-	E_n\psi_n(x) + k\left(\frac{d^2 \psi_n}{dx^2}\right) = 0
+E_n\psi_n(x) + k\left(\frac{d^2 \psi_n}{dx^2}\right) = 0
 $$
 
 Väljer att skriva om differentialekvationen utan Leibnizs notation och vi får:
 $$
-	E_n\psi_n + k \psi_n'' = 0, \quad /E_n 
+E_n\psi_n + k \psi_n'' = 0, \quad /E_n 
 $$
 $$
-	\psi_n'' + \frac{E_n}{k}\psi_n = 0 
+\psi_n'' + \frac{E_n}{k}\psi_n = 0 
 $$
 
 Vet att differentialekvationer av andra ordningen har lösningen $y=e^{\lambda x}$ och vi kan därmed beräkna $\lambda$ för vår differentialekvation genom den karakteristiska ekvationen:
 $$
-	\lambda^2 + a\lambda + b = 0
+\lambda^2 + a\lambda + b = 0
 $$
 
 där $a$ och $b$ är koefficienterna framför respektive "funktion". I vårt fall är $a=0$ och $b = \frac{E_n}{k}$ och vi får därmed den karakteristiska ekvationen:
 $$
-	\lambda^2 + \frac{E_n}{k} = 0, \quad PQ	
+\lambda^2 + \frac{E_n}{k} = 0, \quad PQ	
 $$
 $$
-	\lambda = \pm \sqrt{\frac{E_n}{k}}i
+\lambda = \pm \sqrt{\frac{E_n}{k}}i
 $$
 
-Då rötterna för den karakteristiska ekvationen är komplexa ($\in \mathbb{C}$) får vi den \emph{allmäna lösningen}:
+Då rötterna för den karakteristiska ekvationen är komplexa ($\in \mathbb{C}$) får vi den \emph{allmäna funktionen}:
 $$
-	\psi_n(x) = e^{ax}\left(C \cos bx + D \sin bx\right) \quad | \quad C,D \in \mathbb{R}, \quad \lambda = a + bi
+\psi_n(x) = e^{ax}\left(C \cos bx + D \sin bx\right) \quad | \quad C,D \in \mathbb{R}, \quad \lambda = a + bi
 $$
 $$
-	\psi_n(x) = e^{0}\left( C \cos \pm\sqrt{\frac{E_n}{k}}x + D \sin \pm\sqrt{\frac{E_n}{k}}x \right) 
+\psi_n(x) = e^{0}\left( C \cos \pm\sqrt{\frac{E_n}{k}}x + D \sin \pm\sqrt{\frac{E_n}{k}}x \right) 
 $$
 \begin{equation} \label{psi_gen}
-	\psi_n(x) = C \cos \left(\pm\sqrt{\frac{E_n}{k}}x\right) + D \sin \left(\pm\sqrt{\frac{E_n}{k}}x\right)
+\psi_n(x) = C \cos \left(\sqrt{\frac{E_n}{k}}x\right) + D \sin \left(\sqrt{\frac{E_n}{k}}x\right)
 \end{equation}
 
-Schrödinger ekvationen lyder också att vågfunktionen skall följa både ekvation \ref{shrodequ_con1} och \ref{shrodequ_con2} vilket ger:
+För att finna den \emph{partikulära vågfunktionen} måste vi ta hänsyn till villkoren \ref{shrodequ_con1} och \ref{shrodequ_con2} vilket ger:
 $$
-	\begin{cases}
-		\int_0^L \shrodprob dx\ = 1.0, & P(1) \\
-		\psi_n(0) = \psi_n(L) = 0, & P(2) \\
-		\psi_n'(0) = \psi_n'(L) = 0, & P(3) 
-	\end{cases}
+\begin{cases}
+	\int_0^L \shrodprob dx\ = 1.0, & P(1) \\
+	\psi_n(0) = \psi_n(L) = 0, & P(2) \\
+	\psi_n'(0) = \psi_n'(L) = 0, & P(3) 
+\end{cases}
 $$
 
-Givet att $P(1)$ implicerar det att vågfunktion $\psi_n(x)$ area mellan $0$ och $L$ är $1$ och $P(2)$ samt $P(3)$ gäller vilket ger att det är en stående våg och den har därmed ett visst antal våglängder ($\lambda$) i relation till antal noder ($n$). 
+$P(2)$ och $P(3)$ lyder att sannolikheten att finna partikeln vid $x=0$ eller $x=L$ är $0.0$ vilket ger oss följande ekvation:
+$$
+\psi_n(0) = C \cos \left(\sqrt{\frac{E_n}{k}}0\right) + D \sin \left(\sqrt{\frac{E_n}{k}}0\right) = 0
+$$
+$$
+\psi_n(0) = C \cos \left(0\right) + D \sin \left(0\right) = 0
+$$
+$$
+\implies \psi_n(0) = D \sin \left(0\right) = 0 \implies C = 0
+$$
+
+Vi får därmed att $C=0$ om $P(2)$ skall gälla! Väljer att byta ut $k$ igen till dess ursprungliga uttryck och vi får:
+$$
+\psi_n(x) = D \sin \left(\sqrt{\frac{E_n}{k}} x \right), \quad \left[k/\frac{h^2}{8 \pi ^2 m}\right]
+$$
+$$
+\psi_n(x) = D \sin \left( \sqrt{\frac{8 \pi^2 m E_n}{h^2}} x \right)
+$$
+
+$P(2)$ lyder också att vågfunktionen skall vara $0$ när $x=L$ och vi får därmed uttrycket:
+$$
+\psi_n(L) = D \sin \left( \sqrt{\frac{8 \pi^2 m E_n}{h^2}} L \right) = 0
+$$
+$$
+\implies \sqrt{\frac{8 \pi^2 m E_n}{h^2}} L = 0 + \eta\pi \quad | \quad \eta \in \mathbb{N}, \quad /L
+$$
+$$
+\sqrt{\frac{8 \pi^2 m E_n}{h^2}} = \frac{\eta\pi}{L}
+$$
+
+Eftersom sannolikheten för att partikeln skall vara i lådan är alltid $1.0$ ger oss följande villkor $P(1)$ [\ref{shrodequ_con2}] och vi behöver därmed \emph{normalisera} vågfunktionen. Vi behöver alltså göra så att sannolikheten för att partikeln skall vara mellan $x=0$ och $x=L$ är $1$. Den är alltså alltid \emph{i lådan}. D.v.s. följande:
+$$
+\int_0^L \shrodprob dx\ = 1.0
+$$
+$$
+\implies \shrodprob = \left( D\sin \sqrt{\frac{8 \pi^2 m E_n}{h^2}}x \right)^2
+= D^2 \sin^2 \left( \sqrt{\frac{8 \pi^2 m E_n}{h^2}}x \right), \quad \left[ \sqrt{\frac{8 \pi^2 m E_n}{h^2}} / \frac{\eta\pi}{L}
+\right]
+$$
+$$
+\shrodprob = D^2 \sin^2 \left( \frac{\eta\pi}{L} x \right)
+$$
+$$
+\implies \int_0^L \shrodprob dx\ = D^2 \int_0^L \sin^2\left( \frac{\eta\pi}{L} x \right) dx\ = 1.0
+$$
+
 
 
 \end{document}
