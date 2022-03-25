@@ -7,6 +7,7 @@
 \usepackage{multicol}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{amssymb}
 
 \titleformat{\section}
 {\Large\bfseries}
@@ -152,7 +153,7 @@ $$
 \psi_n(x) = e^{0}\left( C \cos \pm\sqrt{\frac{E_n}{k}}x + D \sin \pm\sqrt{\frac{E_n}{k}}x \right) 
 $$
 \begin{equation} \label{psi_gen}
-\psi_n(x) = C \cos \left(\sqrt{\frac{E_n}{k}}x\right) + D \sin \left(\sqrt{\frac{E_n}{k}}x\right)
+\therefore \psi_n(x) = C \cos \left(\sqrt{\frac{E_n}{k}}x\right) + D \sin \left(\sqrt{\frac{E_n}{k}}x\right)
 \end{equation}
 
 För att finna den \emph{partikulära vågfunktionen} måste vi ta hänsyn till villkoren \ref{shrodequ_con1} och \ref{shrodequ_con2} vilket ger:
@@ -180,7 +181,7 @@ $$
 \psi_n(x) = D \sin \left(\sqrt{\frac{E_n}{k}} x \right), \quad \left[k/\frac{h^2}{8 \pi ^2 m}\right]
 $$
 $$
-\psi_n(x) = D \sin \left( \sqrt{\frac{8 \pi^2 m E_n}{h^2}} x \right)
+\therefore \psi_n(x) = D \sin \left( \sqrt{\frac{8 \pi^2 m E_n}{h^2}} x \right)
 $$
 
 $P(2)$ lyder också att vågfunktionen skall vara $0$ när $x=L$ och vi får därmed uttrycket:
@@ -266,7 +267,32 @@ $$
 \implies \int_0^L \shrodprob dx\ 
 = D^2 \frac{L}{2\eta\pi} \left[u - \int \cos(2u) du\ \right]_0^L
 = D^2 \frac{L}{2\eta\pi} \left[ u + \frac{1}{2}\sin \mu \right]_0^L
+= D^2 \frac{L}{2\eta\pi} \left[ u + \frac{1}{2}\sin 2u \right]_0^L
+$$
+$$
+= D^2 \frac{L}{2\eta\pi} \left[ \frac{\eta\pi}{L}x + \frac{1}{2}\sin\left(2\frac{\eta\pi}{L}x\right) \right]_0^L
+= D^2 \frac{L}{2\eta\pi} \left(\frac{\eta\pi}{L}L + \frac{1}{2}\sin\left(2\frac{\eta\pi}{L}L\right) \right)
+= D^2 \frac{L}{2\eta\pi} \left(\eta\pi + \frac{1}{2}\sin\left(2\eta\pi\right) \right)
+$$
+$$
+= D^2 \frac{L}{2\eta\pi} \left(\eta\pi + \frac{1}{2} \cdot 0 \right)
+= D^2 \frac{L}{2\eta\pi} \cdot \eta\pi
+= D^2 \frac{L}{2}
 $$
 
+Vi får därmed att $\int_0^L \shrodprob dx\ = D^2 \frac{L}{2} = 1.0$ vilket ger oss ekvationen:
+$$
+D^2 \frac{L}{2} = 1, \quad / \frac{L}{2}
+$$
+$$
+D^2 = \frac{2}{L}, \quad \sqrt{\ }
+$$
+$$
+\therefore D = \sqrt{ \frac{2}{L} }
+$$
+Därmed får vi slutligen vågfunktionen $\psi_n(x)$:
+\begin{equation} \label{wavefun_part}
+	\therefore \psi_n(x) = \sqrt{ \frac{2}{L} } \sin \left( \sqrt{\frac{8 \pi^2 m E_n}{h^2}} x \right)
+\end{equation}
 
 \end{document}
