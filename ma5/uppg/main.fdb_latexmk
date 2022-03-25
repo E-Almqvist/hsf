@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1648211808 "main.tex" "main.pdf" "main" 1648211809
+["pdflatex"] 1648213365 "main.tex" "main.pdf" "main" 1648213366
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1640600964 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1640600964 1004 54797486969f23fa377b128694d548df ""
   "/usr/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1640600964 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -13,6 +13,7 @@
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmr12.tfm" 1640600964 1288 655e228510b4c2a1abe905c368440826 ""
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmr17.tfm" 1640600964 1292 296a67155bdbfc32aa9c636f21e91433 ""
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmti10.tfm" 1640600964 1480 aa8e34af0eb6a2941b776984cf1dfdc4 ""
+  "/usr/share/texmf-dist/fonts/tfm/public/cm/cmti7.tfm" 1640600964 1492 86331993fe614793f5e7e755835c31c5 ""
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm" 1640600964 768 1321e9409b4137d6fb428ac9dc956269 ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1640600964 32080 340ef9bf63678554ee606688e7b5339d ""
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb" 1640600964 36554 b67dc2cfa451409e100b3fcf5f506509 ""
@@ -81,9 +82,9 @@
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1640600964 39911 2da6c67557ec033436fe5418a70a8a61 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1647853768 4243317 6cd4c1d3b72728bfa7db8ef2e14c0430 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1647853732 2920113 d8a499937a1239664546ceed552c7509 ""
-  "main.aux" 1648211809 1487 653c38bcf6a6df8e18201b53f41b3454 "pdflatex"
-  "main.out" 1648211809 561 7f4a6e130b4a0841f3a3fe085e8f354a "pdflatex"
-  "main.tex" 1648211807 9607 ed2c06c8caf7132ab4ead7927c510590 ""
+  "main.aux" 1648213365 1487 653c38bcf6a6df8e18201b53f41b3454 "pdflatex"
+  "main.out" 1648213365 561 7f4a6e130b4a0841f3a3fe085e8f354a "pdflatex"
+  "main.tex" 1648213364 10029 189ca3e9f10596bb1446685a27f92be0 ""
   (generated)
   "main.aux"
   "main.log"
