@@ -210,11 +210,44 @@ $$
 \implies \int_0^L \shrodprob dx\ = D^2 \int_0^L \sin^2\left( \frac{\eta\pi}{L} x \right) dx\ = 1.0
 $$
 
-Vi behöver nu beräkna integralen och få fram dess uttryck. Vi använder oss därmed av \emph{u-substitution} och \emph{trigonometriska ettan}:
-$$ %TODO: remove me
-2 \sin^2 x = 1 - \cos x
+Vi behöver nu beräkna integralen och få fram dess uttryck. Vi använder oss därmed av \emph{u-substitution} och \emph{trigonometriska ettan}. \emph{\textbf{Låt $u = \frac{\eta\pi}{L}x$}}:
+$$
+\int_0^L \sin^2\left( \frac{\eta\pi}{L} x \right) dx\ = \int_0^L \sin^2(u) dx\
+$$
+$$
+\implies \frac{du}{dx} = \frac{\eta\pi}{L} \implies dx\ = \frac{L}{\eta\pi} du\
+$$
+$$
+\implies \int_0^L \sin^2(u) dx\ = \frac{L}{\eta\pi} \int_0^L sin^2(u) du\
 $$
 
+Väljer att \emph{\textbf{skriva om och förenkla $sin^2\left(u\right)$}} och enlight den \emph{trigonometriska ettan} får vi:
+$$
+\cos(2u) = 1 - 2\sin^2 u, \quad \text{(dubbla vinkeln för cosinus)}, \quad +2\sin^2 u
+$$
+$$
+\cos 2u + 2\sin^2 u = 1, \quad -\cos 2u
+$$
+$$
+2\sin^2 u = 1 - \cos 2u, \quad /2
+$$
+$$
+\implies \sin^2 u = \frac{1}{2} - \frac{1}{2}\cos 2u
+$$
+
+Vi kan nu stoppa in vår förenklade version av $sin^2(u)$ med något vi faktiskt kan integrera:
+$$
+\implies \int_0^L \shrodprob dx\ 
+= D^2 \int_0^L \sin^2\left( \frac{\eta\pi}{L} x \right) dx\ 
+= D^2 \frac{L}{\eta\pi} \int_0^L \left\{ \frac{1}{2} - \frac{1}{2}\cos(2u) \right\} du\ 
+$$
+$$
+= D^2 \frac{L}{2\eta\pi} \int_0^L \left\{ 1 - \cos(2u) \right\} du\ 
+= D^2 \frac{L}{2\eta\pi} \left( \int_0^L 1 du\ - \int_0^L \cos(2u) du\ \right)
+$$
+$$
+= D^2 \frac{L}{2\eta\pi} \left[u - \int \cos(2u) du\ \right]_0^L
+$$
 
 
 
