@@ -348,8 +348,40 @@ Se relevanta grafbilder i \emph{imgs/}.
 
 \subsection{3}
 
+Vi vet sedan tidigare $\psi_n(x)$:
 $$
 \psi_n(x) = \sqrt{ \frac{2}{L} } \sin \left( \sqrt{\frac{8 \pi^2 m E_n}{h^2}} x \right)
+$$
+
+och i uppgiften får vi att:
+$$
+\Psi_n(x, t) = \psi_n(x) \cdot e^{-i \frac{E_n}{\hbar}t }
+$$
+$$
+\implies \Psi_n(x, t) = \sqrt{ \frac{2}{L} } \sin \left( \sqrt{\frac{8 \pi^2 m E_n}{h^2}} x \right) \cdot e^{-i \frac{E_n}{\hbar}t } =
+$$
+$$
+= \sqrt{ \frac{2}{L} } \sin \left( \sqrt{\frac{8 \pi^2 m E_n}{h^2}} x \right) \cdot e^{-i \frac{E_n}{ \frac{h}{2\pi} }t } 
+= \sqrt{ \frac{2}{L} } \sin \left( \sqrt{\frac{8 \pi^2 m E_n}{h^2}} x \right) \cdot e^{-i \frac{2 E_n \pi}{h}t } 
+$$
+$$
+\therefore \Psi_n(x,t) = \sqrt{ \frac{2}{L} } \left(e^{-i \frac{2 E_n \pi}{h}t }\right) \sin \left( \sqrt{\frac{8 \pi^2 m E_n}{h^2}} x \right) 
+$$
+
+Vi behöver nu bara normalisera integralen sådan att den alltid blir $1$ för följande:
+$$
+\Psi_{1,2}(x, t) = A \left( \psi_1(x)e^{-i \frac{2\pi E_1}{h}t } + \psi_2(x)e^{-i \frac{2\pi E_2}{h}t } \right)
+$$
+$$
+\int_0^L |\Psi_{1,2}(x, t)|^2 dx\ = 1
+$$
+
+Eftersom vi integrerar med respekt till $x$ tyder det på att $t$ är en konstant och vi kan därmed skriva om tidsfaktorn som $z_i$:
+$$
+\int_0^L |\Psi_{1,2}(x, t)|^2 dx\ = \int_0^L \left(A |\psi_1(x)z_1 + \psi_2(x)z_2| \right)^2 dx\
+$$
+$$
+= A^2 \int_0^L |\psi_1(x)z_1 + \psi_2(x)z_2|^2 dx\ = 1.0 \quad | \quad z_i \in \mathbb{C}
 $$
 
 \end{document}
