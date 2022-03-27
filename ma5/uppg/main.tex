@@ -9,6 +9,7 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 
+
 \titleformat{\section}
 {\Large\bfseries}
 {}
@@ -21,16 +22,15 @@
 {0em}
 {}
 \titlespacing{\subsection}
-{0em}{0em}{.4em}
+{0em}{2em}{.4em}
 
 \titleformat{\subsubsection}[runin]
 {\bfseries}
 {}
 {0em}
-{}[:]
-
+{}
 \titlespacing{\subsubsection}
-{0em}{0em}{1em}
+{0em}{2em}{1em}
 
 \renewcommand{\maketitle}{
 	\begin{center}
@@ -69,6 +69,31 @@
 \maketitle
 \newpage
 
+\section{Notation \& syntax}
+\subsection{Operationer}
+Ekvationer följda med ett "$,$" och sedan ett uttryck menas att uttrycket utsätts på både höger och vänster led. Uttrycket kan också vara en formel som till exempel "$PQ$" eller "$\text{trig-ettan}$". \emph{Operationer utförs ej på villkor}. Exempel:
+$$
+2x = 8, \quad /2
+$$
+$$
+x = 4
+$$
+
+\subsection{Substitution}
+$$
+, \quad \left[ a / b \right]
+$$
+
+Menas att $a$ byts ut mot $b$ i ekvationen vänster om kommatecknet.
+
+\subsection{Gruppering}
+$$
+\left\{\text{\emph{uttryck}}\right\}
+$$
+
+Menas att allt inom måsvingarna är grupperad och skild från andra uttryck. Kan enbart utföras funktionella operationer på gruppen såsom $\frac{d}{dx}$ eller $\int$.
+
+\newpage
 \section{Uppgiftbeskrivning (taget från dokumentet)}
 En partikel i en låda är en utav de första tillämpningarna man stöter på när man lär sig om kvantfysik. Man betraktar då en partikel (t.ex. en elektron) som befinner sig i en låda med oändligt höga väggar.
 För detta undersöker man partikelns vågfunktion $\wavefun$. Vågfunktionen är i allmänhet en komplex funktion,
@@ -137,7 +162,7 @@ $$
 \lambda^2 + a\lambda + b = 0
 $$
 
-där $a$ och $b$ är koefficienterna framför respektive "funktion". I vårt fall är $a=0$ och $b = \frac{E_n}{k}$ och vi får därmed den karakteristiska ekvationen:
+där $a$ och $b$ är koefficienterna framför respektive "funktion". I vårt fall är $a=0$ och $b = \frac{E_n}{k}$ och vi får därmed den \textbf{\emph{karakteristiska ekvationen}}:
 $$
 \lambda^2 + \frac{E_n}{k} = 0, \quad PQ	
 $$
@@ -145,7 +170,7 @@ $$
 \lambda = \pm \sqrt{\frac{E_n}{k}}i
 $$
 
-Då rötterna för den karakteristiska ekvationen är komplexa ($\in \mathbb{C}$) får vi den \emph{allmäna funktionen}:
+Då rötterna för den karakteristiska ekvationen är komplexa ($\in \mathbb{C}$) får vi den \textbf{\emph{allmänna funktionen}}:
 $$
 \psi_n(x) = e^{ax}\left(C \cos bx + D \sin bx\right) \quad | \quad C,D \in \mathbb{R}, \quad \lambda = a + bi
 $$
@@ -156,7 +181,7 @@ $$
 \therefore \psi_n(x) = C \cos \left(\sqrt{\frac{E_n}{k}}x\right) + D \sin \left(\sqrt{\frac{E_n}{k}}x\right)
 \end{equation}
 
-För att finna den \emph{partikulära vågfunktionen} måste vi ta hänsyn till villkoren \ref{shrodequ_con1} och \ref{shrodequ_con2} vilket ger:
+För att finna den \textbf{\emph{partikulära vågfunktionen}} måste vi ta hänsyn till villkoren \ref{shrodequ_con1} och \ref{shrodequ_con2} vilket ger:
 $$
 \begin{cases}
 	\int_0^L \shrodprob dx\ = 1.0, & P(1) \\
@@ -191,9 +216,9 @@ $$
 $$
 \implies \sqrt{\frac{8 \pi^2 m E_n}{h^2}} L = 0 + \eta\pi \quad | \quad \eta \in \mathbb{N}, \quad /L
 $$
-$$
+\begin{equation} \label{coeff_eq}
 \sqrt{\frac{8 \pi^2 m E_n}{h^2}} = \frac{\eta\pi}{L}
-$$
+\end{equation}
 
 Eftersom sannolikheten för att partikeln skall vara i lådan är alltid $1.0$ ger oss följande villkor $P(1)$ [\ref{shrodequ_con2}] och vi behöver därmed \emph{normalisera} vågfunktionen. Vi behöver alltså göra så att sannolikheten för att partikeln skall vara mellan $x=0$ och $x=L$ är $1$. Den är alltså alltid \emph{i lådan}. D.v.s. följande:
 $$
@@ -201,8 +226,7 @@ $$
 $$
 $$
 \implies \shrodprob = \left( D\sin \sqrt{\frac{8 \pi^2 m E_n}{h^2}}x \right)^2
-= D^2 \sin^2 \left( \sqrt{\frac{8 \pi^2 m E_n}{h^2}}x \right), \quad \left[ \sqrt{\frac{8 \pi^2 m E_n}{h^2}} / \frac{\eta\pi}{L}
-\right]
+= D^2 \sin^2 \left( \sqrt{\frac{8 \pi^2 m E_n}{h^2}}x \right), \quad \left[ \sqrt{\frac{8 \pi^2 m E_n}{h^2}} / \frac{\eta\pi}{L} \right]
 $$
 $$
 \shrodprob = D^2 \sin^2 \left( \frac{\eta\pi}{L} x \right)
@@ -211,7 +235,10 @@ $$
 \implies \int_0^L \shrodprob dx\ = D^2 \int_0^L \sin^2\left( \frac{\eta\pi}{L} x \right) dx\ = 1.0
 $$
 
-Vi behöver nu beräkna integralen och få fram dess uttryck. Vi använder oss därmed av \emph{u-substitution} och \emph{trigonometriska ettan}. \emph{\textbf{Låt $u = \frac{\eta\pi}{L}x$}}:
+Vi behöver nu beräkna integralen och få fram dess uttryck. Vi använder oss därmed av \emph{u-substitution} och \emph{trigonometriska ettan}. 
+$$
+\textbf{\emph{Låt $u = \frac{\eta\pi}{L}x$}}
+$$
 $$
 \int_0^L \sin^2\left( \frac{\eta\pi}{L} x \right) dx\ = \int_0^L \sin^2(u) dx\
 $$
@@ -222,7 +249,7 @@ $$
 \implies \int_0^L \sin^2(u) dx\ = \frac{L}{\eta\pi} \int_0^L sin^2(u) du\
 $$
 
-Väljer att \emph{\textbf{skriva om och förenkla $sin^2\left(u\right)$}} och enlight den \emph{trigonometriska ettan} får vi:
+Väljer att \emph{\textbf{skriva om och förenkla $sin^2(u)$}} och enlight den \emph{trigonometriska ettan} får vi:
 $$
 \cos(2u) = 1 - 2\sin^2 u, \quad \text{(dubbla vinkeln för cosinus)}, \quad +2\sin^2 u
 $$
@@ -294,5 +321,35 @@ Därmed får vi slutligen vågfunktionen $\psi_n(x)$:
 \begin{equation} \label{wavefun_part}
 	\therefore \psi_n(x) = \sqrt{ \frac{2}{L} } \sin \left( \sqrt{\frac{8 \pi^2 m E_n}{h^2}} x \right)
 \end{equation}
+Det enda som återstår att att finna alla tillåtna energitillstånden ($E_n$). Sedan tidigare har vi följande uttryck [\ref{coeff_eq}]:
+$$
+\sqrt{\frac{8 \pi^2 m E_n}{h^2}} = \frac{\eta\pi}{L} \quad | \quad \eta \in \mathbb{N}
+$$
+
+Skriver om indexet $\eta$ som $n$ då de är samma variabel i detta fall. 
+$$
+\textbf{\emph{Låt $\eta = n$}}
+$$
+$$
+\sqrt{\frac{8 \pi^2 m E_n}{h^2}} = \frac{n\pi}{L} \quad | \quad n \in \mathbb{N}, \quad \ ^2
+$$
+$$
+\frac{8 \pi^2 m E_n}{h^2} = \left(\frac{n\pi}{L}\right)^2, \quad \cdot \frac{h^2}{8 \pi^2 m}
+$$
+$$
+E_n = \left(\frac{n\pi}{L}\right)^2 \frac{h^2}{8 \pi^2 m} 
+$$
+\begin{equation} \label{energy_n}
+\therefore E_n = \frac{h^2}{8mL^2} n^2
+\end{equation}
+
+\subsection{2}
+Se relevanta grafbilder i \emph{imgs/}.
+
+\subsection{3}
+
+$$
+\psi_n(x) = \sqrt{ \frac{2}{L} } \sin \left( \sqrt{\frac{8 \pi^2 m E_n}{h^2}} x \right)
+$$
 
 \end{document}
