@@ -384,4 +384,25 @@ $$
 = A^2 \int_0^L |\psi_1(x)z_1 + \psi_2(x)z_2|^2 dx\ = 1.0 \quad | \quad z_i \in \mathbb{C}
 $$
 
+Eftersom integranden är magnituden av ett komplext tal ges det att man kan se den som en vektor av $\mathbb{R}^2$ vilket i sin tur menas att magnituden är dess längd. Vi kan därmed skriva om magnituden med hjälp av \emph{pythagoras sats} (väljer också att skriva bort "$(x)$" från vågfunktionerna):
+
+$$
+|\psi_1(x)z_1 + \psi_2(x)z_2| = \sqrt{ \left( \psi_1 \emph{Re}(z_1) + \psi_2 \emph{Re}(z_2) \right)^2 + \left( \psi_1 \emph{Im}(z_1) + \psi_2 \emph{Im}(z_2) \right)^2 }
+$$
+
+Eftersom denna magnituden är i kvadrat får vi:
+$$
+|\psi_1(x)z_1 + \psi_2(x)z_2|^2 = \left( \psi_1 \emph{Re}(z_1) + \psi_2 \emph{Re}(z_2) \right)^2 + \left( \psi_1 \emph{Im}(z_1) + \psi_2 \emph{Im}(z_2) \right)^2 
+$$
+$$
+= \left( \psi_1 \emph{Re}(z_1) + \psi_2 \emph{Re}(z_2) \right)^2 + \left( \psi_1 \emph{Im}(z_1) + \psi_2 \emph{Im}(z_2) \right)^2 
+$$
+$$
+= ( \psi_1^2 \emph{Re}^2(z_1) + 2\psi_1 \psi_2 \emph{Re}(z_1)\emph{Re}(z_2) + \psi_2^2 \emph{Re}^2(z_2) )^2 
+$$
+$$
++ ( \psi_1^2 \emph{Im}^2(z_1) + 2\psi_1 \psi_2 \emph{Im}(z_1)\emph{Im}(z_2) + \psi_2^2 \emph{Im}^2(z_2) )^2 
+$$
+
+
 \end{document}
