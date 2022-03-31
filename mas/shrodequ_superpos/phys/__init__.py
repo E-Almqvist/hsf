@@ -1,4 +1,4 @@
 from phys.func import *
 from phys.const import *
-from phys.box import box
+from phys.quantum_systems import *
 from phys.particle import particle

@@ -13,14 +13,14 @@ def energy(n):
     return (((h*n)/BOX_LENGTH)**2)*(1/(8*m))
 
 # Wave func inner coef
-def k(n):
+def psi_k(n):
     return np.sqrt( (8 * ((np.pi)**2) * m * energy(n))/(h**2) )
 
 # pre calculate energy states
-energy_states = []
+energy_def = []
 for n in range(0, 11):
-    energy_states.append( energy(n) )
+    energy_def.append( energy(n) )
 
-psi_k = []
+psi_k_def = []
 for n in range(0, 11):
-    psi_k.append( k(n) )
+    psi_k_def.append( psi_k(n) )
