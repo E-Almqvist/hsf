@@ -16,7 +16,7 @@ class infbox(quantum_system):
         self.length = length
         self.norm_factor = np.sqrt(2/self.length)
 
-    def get_superpos(self, x: float, t: float) -> float:
+    def get_superpos(self, x, t) -> float:
         waves = []
         for part in self.particles:
             waves.append( part.wave(x, t) )
@@ -25,7 +25,16 @@ class infbox(quantum_system):
 
         # normalize the superpos #TODO: ?????
         # superpos_wave *= 1/abs(superpos_wave) 
+        # superpos_wave = np.exp(superpos_wave)
 
         return abs(superpos_wave) ** 2
+
+    def plot_superpos(self, X, T):
+        plots = {}
+        for x in X:
+            for t in T:
+                plots[(x, t)] = self.get_superpos(x, t)
+        return plots
+
 
 

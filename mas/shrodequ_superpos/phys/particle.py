@@ -1,4 +1,3 @@
-from phys.func import psi, prob
 from phys.const import energy, psi_k
 from phys.quantum_systems import *
 
@@ -21,13 +20,13 @@ class particle:
 
         self.system.add_particle(self)
 
-    def psi(self, x: float):
+    def psi(self, x):
         return self.system.norm_factor * np.sin(self.psi_k * x)
 
-    def wave(self, x: float, time: float) -> complex:
+    def wave(self, x, time) -> complex:
         z_coef = -( (2*np.pi*self.energy*time)/Planck ) # exponent coef
         z = complex(0, z_coef) # full coef (complex)
-        time_factor = cmath.exp(z) # TODO: cmath.exp is weird, verify...
+        time_factor = cmath.exp(z) 
         psi = self.system.norm_factor * np.sin(self.psi_k * x)
 
         return psi * time_factor
