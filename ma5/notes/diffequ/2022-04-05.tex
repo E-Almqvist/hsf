@@ -1,0 +1,87 @@
+\documentclass{article}
+
+\usepackage[margin=2cm]{geometry}
+\usepackage{titlesec}
+\usepackage{titling}
+\usepackage[hidelinks]{hyperref}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{braket}
+
+\titleformat{\section}
+{\Large\bfseries}
+{}
+{0em}
+{}[\titlerule]
+
+\titleformat{\subsection}
+{\large\bfseries}
+{}
+{0em}
+{}
+\titlespacing{\subsection}
+{0em}{2em}{.4em}
+
+\titleformat{\subsubsection}[runin]
+{\bfseries}
+{}
+{0em}
+{}
+\titlespacing{\subsubsection}
+{0em}{2em}{1em}
+
+\renewcommand{\maketitle}{
+	\begin{center}
+		{\huge\bfseries\thetitle}\\
+		\vspace{1em}
+		{\Large\theauthor} \\
+		\vspace{1em}
+		elalmqvist@gmail.com --- \url{https://wych.dev}
+	\end{center}
+}
+
+
+\begin{document}
+
+\title{Anteckningar 2022-04-05}
+\author{Elias Almqvist}
+
+\maketitle
+\newpage
+
+\section{Inhomogena diff-ekvationer av första-ordningen bevis}
+
+$$
+y' + ay = f(x)
+$$
+$$
+\text{Låt } g = y_{p1} - y_{p2}
+$$
+
+Där $y_{p1}$ och $y_{p2}$ (antagande) är partikulärlösningar till ekvationen $y' + ay = f(x)$. Alltså är $y_{pn}' + ay_{pn} = f(x)$ Detta ger den homogena ekvationen för $g$:
+$$
+g' + ag = y_{p1}' - y_{p2}' + a\left(y_{p1} - y_{p2}\right) = \left( y_{p1}' + ay_{p1} \right) - \left( y_{p2}' + ay_{p2} \right)
+$$
+
+Eftersom $\left( y_{p1}' + ay_{p1} \right) - \left( y_{p2}' + ay_{p2} \right) = f(x) - f(x)$ får vi att: 
+$$
+g' + ag = \left( y_{p1}' + ay_{p1} \right) - \left( y_{p2}' + ay_{p2} \right) = f(x) - f(x) = 0
+$$
+
+Dvs $g = y_{p1} - y_{p2}$ är en lösning till $y' + ay = 0$
+
+$$
+\implies g + y_{p2} = y_{p1}
+$$
+$$
+\therefore y = g + y_{p2} \because g = y_{p1} - y_{p2}
+$$
+
+Då $g = y_h$ och $y_{p2} = y_{p}$
+$$
+y = y_h + y_p \quad \text{V.S.V}
+$$
+
+\end{document}
