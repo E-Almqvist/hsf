@@ -1,5 +1,4 @@
 #!/usr/bin/python
-import operator
 
 def new_rap(x, func: str="0", der: str="0", iter=0):
     y_exper = func.replace("x", str(x)) 
@@ -11,22 +10,6 @@ def new_rap(x, func: str="0", der: str="0", iter=0):
     print(f"new_x = {x} - {y}/{der} [{iter}]")
     new_x = x - (y / der)
     return new_x
-
-# def new_rap(x, func=nullfunc, dx=0.1):
-#     new_x = None 
-#     try:
-#         while x != new_x:
-#             y = func(x)
-#             der = derive(x, func, dx)
-#             new_x = x - y/der
-#             if new_x == x:
-#                 return new_x 
-#             else:
-#                 x = new_x
-#         return x
-#     except ZeroDivisionError as error:
-#         print(f"{y=} {der=} {new_x=}")
-#         print(error)
 
 def eval_func( func: str, x: float ):
     y_exper = func.replace("x", str(x)) 
