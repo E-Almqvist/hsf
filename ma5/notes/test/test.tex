@@ -1,0 +1,136 @@
+\documentclass{article}
+
+\usepackage[margin=2cm]{geometry}
+\usepackage{titlesec}
+\usepackage{titling}
+\usepackage[hidelinks]{hyperref}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{braket}
+
+\titleformat{\section}
+{\Large\bfseries}
+{}
+{0em}
+{}[\titlerule]
+
+\titleformat{\subsection}
+{\large\bfseries}
+{}
+{0em}
+{}
+\titlespacing{\subsection}
+{0em}{2em}{.4em}
+
+\titleformat{\subsubsection}[runin]
+{\bfseries}
+{}
+{0em}
+{}
+\titlespacing{\subsubsection}
+{0em}{2em}{1em}
+
+\renewcommand{\maketitle}{
+	\begin{center}
+		{\huge\bfseries\thetitle}\\
+		\vspace{1em}
+		{\Large\theauthor} \\
+		\vspace{1em}
+		elalmqvist@gmail.com --- \url{https://wych.dev}
+	\end{center}
+}
+
+
+\begin{document}
+
+\title{Anteckningar 2022-04-28}
+\author{Elias Almqvist}
+
+\maketitle
+\newpage
+
+Lös ekvationen:
+$$
+y'' = -2y' - 8y + \sin x
+$$
+
+Lösning:
+$$
+y'' = -2y' - 8y + \sin x, \quad + 2y' + 8y
+$$
+$$
+y'' + 2y' + 8y = \sin x
+$$
+
+Vi får därmed att $y = y_p + y_h$, \\
+Börjar med den homogena:
+$$
+y'' + 2y' + 8y = 0
+$$
+$$
+\implies r^2 + 2r + 8 = 0 \quad \text{antag att y är } e^{rx}
+$$
+$$
+\implies r = -1 \pm \sqrt{-7} = -1 \pm 7i
+$$
+$$
+\therefore y_h = e^{-x} \left( A\cos(\sqrt{7}x) + B\sin{\sqrt{7}x} \right) \quad | \quad A,B \in \mathbb{R}
+$$
+
+Part lösn: antar att $y_p$ är av formen: $y_p = D\sin x + E\cos x + F \quad | \quad D,E,F \in \mathbb{R}$ \\
+Stoppar in den i ekvationen:
+$$
+y_p' = D\cos x - E\sin x 
+$$
+$$
+y_p'' = -\left( D\sin x + E\cos x \right)
+$$
+Vi får därmed:
+$$
+-\left( D\sin x + E\cos x \right) + 2\left(D\cos x - E\sin x\right) + 8\left(D\sin x + E\cos x + F\right) = \sin x
+$$
+$$
+-D\sin x - E\cos x + 2D\cos x - 2E\sin x + 8D\sin x + 8E\cos x + 8F = \sin x
+$$
+$$
+2D\cos x - 2E\sin x + 7D\sin x + 7E\cos x + 8F = \sin x
+$$
+$$
+\implies
+\begin{cases}
+	8F = 0 \implies F = 0 \\
+	7E + 2D = 0 \\
+	7D - 2E = 1
+\end{cases}
+$$
+
+Stoppar in i en matris och får:
+$$
+\begin{bmatrix}
+	7 & 2 & 0 \\
+	-2 & 7 & 1
+\end{bmatrix}
+\rightarrow
+\begin{bmatrix}
+	1 & 0 & -\frac{2}{53} \\
+	0 & 1 & \frac{7}{53}
+\end{bmatrix}
+$$
+$$
+\therefore y_p = \frac{7}{53} \sin x - \frac{2}{53} \cos x
+\quad \because  E = -\frac{2}{53}, \quad D = \frac{7}{53}
+$$
+
+Slutligen får vi därmed hela allmäna lösningen:
+$$
+\therefore y = y_p + y_h 
+$$
+$$
+= \frac{7}{53} \sin x - \frac{2}{53} \cos x + e^{-x} \left( A\cos(\sqrt{7}x) + B\sin{\sqrt{7}x} \right)
+$$
+
+Givet att $A,B \in \mathbb{R}$
+
+\end{document}
