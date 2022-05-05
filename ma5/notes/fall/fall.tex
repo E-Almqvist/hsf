@@ -1,0 +1,105 @@
+\documentclass{article}
+
+\usepackage[margin=2cm]{geometry}
+\usepackage{titlesec}
+\usepackage{titling}
+\usepackage[hidelinks]{hyperref}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{braket}
+
+\titleformat{\section}
+{\Large\bfseries}
+{}
+{0em}
+{}[\titlerule]
+
+\titleformat{\subsection}
+{\large\bfseries}
+{}
+{0em}
+{}
+\titlespacing{\subsection}
+{0em}{2em}{.4em}
+
+\titleformat{\subsubsection}[runin]
+{\bfseries}
+{}
+{0em}
+{}
+\titlespacing{\subsubsection}
+{0em}{2em}{1em}
+
+\renewcommand{\maketitle}{
+	\begin{center}
+		{\huge\bfseries\thetitle}\\
+		\vspace{1em}
+		{\Large\theauthor} \\
+		\vspace{1em}
+		elalmqvist@gmail.com --- \url{https://wych.dev}
+	\end{center}
+}
+
+
+\begin{document}
+
+\title{Anteckningar 2022-05-05}
+\author{Elias Almqvist}
+
+\maketitle
+\newpage
+
+\section{Fallande kropp i atmosfär}
+Något som faller har tyngdaccelerationen $g$ i $\frac{m}{s^2}$ och en massa $m$ i kg. $v$ är dess hastighet i $\frac{m}{s}$ och $F$ är kraften som verkas på den i newton. Den har dessutom en luftmotståndsfunktion: $\gamma(v)$. Låt positiva ($v > 0$) gå uppåt:
+$$
+F_g = -mg
+$$
+$$
+F_\gamma = \gamma(v)
+$$
+$$
+\implies F = \Delta F = F_g - F_\gamma = -mg - \gamma(v)
+$$
+
+För att få den resulterande accelerationen $a$ dividerar vi med $m$:
+$$
+a = \frac{F}{m} \because F = ma
+$$
+$$
+a = \frac{-mg - \gamma(v)}{m} = -\left(g + \frac{\gamma(v)}{m}\right)
+$$
+
+Vi kan också skriva om $a$:
+$$
+a = \frac{dv}{dt} = \dot{v} = -\left(g + \frac{\gamma(v)}{m}\right), \quad +\frac{\gamma(v)}{m}
+$$
+$$
+\therefore \dot{v} + \frac{1}{m} \gamma(v) = -g
+$$
+
+Nu varierar ekvationen beroende på vad $\gamma(v)$ är för något. Men vi kan anta att $F_\gamma \propto v$ vilket ger:
+$$
+\dot{v} + \frac{1}{m} kv = -g \quad | \quad k \in \mathbb{R}
+$$
+$$
+\implies v_h = Ce^{-\frac{k}{m} t} \quad | \quad C \in \mathbb{R}
+$$
+$$
+\implies v_p = \frac{-mg}{k}
+$$
+$$
+\therefore v_a = v_p + v_h = Ce^{-\frac{k}{m} t} - \frac{mg}{k}
+$$
+
+Vi har nu den en generell lösning. Behöver bara lösa vad $C$ är givet ett villkor. etc etc. \\
+Exempel:
+$$
+v(0) = 0 \implies C - \frac{mg}{k} = 0 \implies C = \frac{mg}{k}
+$$
+$$
+\therefore v = \frac{mg}{k} \left( e^{\frac{-k}{m}t} - 1 \right)
+$$
+
+\end{document}
