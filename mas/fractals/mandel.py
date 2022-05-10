@@ -1,9 +1,10 @@
 #!/usr/bin/python
 
 import pygame 
+import numpy as np
 
 W, H = 500, 500
-ITER = 5
+ITER = 80
 
 class Point:
     def __init__(self, x, y):
@@ -11,12 +12,15 @@ class Point:
         self.y = y
 
     def square(self):
-        self.x = self.x**2 - self.y**2
+        self.x = np.square(self.x) - np.square(self.y)
         self.y = 2*self.x*self.y
 
     def add(self, p2):
         self.x += p2.x
         self.y += p2.y
+
+    def len(self):
+        return np.sqrt( np.square(self.x) + np.square(self.y) )
 
 
 def mandel(n: int, c: Point):
@@ -32,9 +36,9 @@ print("Plotting...")
 plots = {}
 for x in range(0, W):
     for y in range(0, H):
-        print(f"{x=} {y=}", end="\r")
-        z = mandel(ITER, Point(x - W/2, y - H/2))
-        plots[(x,y)] = (0, 0, 0) if z.x < 2 else (255, 255, 255)
+        print(f"{round(100*x/W)}% \t {x=} {y=}", end="\r")
+        z = mandel(ITER, Point(x, y))
+        plots[(x,y)] = (0, 0, 0) if z.len() < 2 else (255, 255, 255)
 
 
 print("Init render")
