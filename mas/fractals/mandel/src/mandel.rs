@@ -1,4 +1,4 @@
-use num::complex::Complex;
+use num::complex::Complex64;
 use sdl2::pixels::Color;
 
 /*
@@ -16,34 +16,24 @@ impl Color {
 }
 */
 
-fn mandel(n: u64, c: Complex<f64>) -> Complex<f64> {
+fn mandel(n: u64, c: Complex64) -> Complex64 {
     if n == 0 {
-        return Complex::new(0.0, 0.0);
+        return Complex64::new(0.0, 0.0);
     } else {
-        let mut new_z = mandel(n-1, c);
-        new_z = new_z.powu(2);
-        new_z += c;
-        return new_z;
+        return mandel(n-1, c).norm() + c;
     }
 }
 
-pub fn get_point_color(w: i32, h: i32, x: i32, y: i32, depth: u64) -> Color {
-    let c = Complex::<f64>::new((x + w/2).into(), (y + w/2).into());
+pub fn get_point_color(x: i32, y: i32, depth: u64) -> Color {
+    let c = Complex64::new(x.into(), y.into());
     let mut z = mandel(depth, c);
-    let mut norm = z.norm();
-    println!("\rNorm: {:?}", norm);
+    let mut norm = z.re*z.re + z.im*z.im;
+
+    println!("{:?} {:?} < 2?", z, norm);
     
-    if norm < 2.0 {
+    if norm < 4.0 {
         return Color::RGB(0, 0, 0);
     } else {
-        return Color::RGB(255, 25, 25);
-    }
-}
-
-pub fn generate_points(from_x: i32, to_x: i32, from_y: i32, to_y: i32, depth: u64) {
-    for x in from_x..to_x {
-        for y in from_y..to_y {
-            println!("{:?}", get_point_color(200, 200, x, y, depth));
-        }
+        return Color::RGB(25, 25, 25);
     }
 }

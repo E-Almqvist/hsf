@@ -14,8 +14,8 @@ fn main() {
     println!("{} {}", width, height);
     */
     let (width, height) = (640, 480);
-    let (xr, yr) = ([-320, 320], [-240, 240]);
-    let depth = 500;
+    let (xr, yr) = ([0, 320], [0, 240]);
+    let depth = 100;
     
     let (window, ctx, vid_sys) = render::create_window("Mandelbrot set", width, height);
 
@@ -28,14 +28,12 @@ fn main() {
     println!("Init mandel render");
     for dx in xr[0]..xr[1] {
         for dy in yr[0]..yr[1] {
-            let col: Color = mandel::get_point_color(width.try_into().unwrap(), 
-                                                     height.try_into().unwrap(), 
-                                                     dx, dy, depth); 
+            let col: Color = mandel::get_point_color(dx, dy, depth); 
             //println!("{}:{} {:?}", dx, dy, col);
             render::set_pixel(&mut canvas, dx, dy, col);
+            canvas.present();
         }
     }
-    canvas.present();
     println!("Post mandel render");
 
     let mut event_pump = ctx.event_pump().unwrap();
