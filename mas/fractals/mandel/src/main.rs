@@ -1,13 +1,9 @@
 mod mandel;
+mod render;
 
 use std::env;
-use sfml::window::{Window, Event, Style};
-use sfml::graphics::{Color, Rect};
-use sfml::system::Vector2i;
 
-fn render_pixel(x: u32, y: u32, col: Color) -> Rect<i32> {
-    return rect;
-}
+use sdl2::pixels::Color;
 
 fn main() {
     /*
@@ -19,25 +15,11 @@ fn main() {
     let (width, height) = (640, 480);
     let (xr, yr) = ([-200, 200], [-200, 200]);
     
-    let mut win = Window::new((width, height), "Mandelbrot set", Style::CLOSE, &Default::default());
-    win.set_framerate_limit(20);
-    win.set_position(Vector2i::new(0, 0));
+    let (window, ctx, vid_sys) = render::create_window("Mandelbrot set", width, height);
+    let mut can = window.into_canvas().unwrap();
 
-    let mut rect = Rect::new(200, 200, 1, 1);
-    rect.set_fill_color(Color::RED);
-
-    while win.is_open() {
-        while let Some(ev) = win.poll_event() {
-            match ev {
-                Event::Closed => {win.close();},
-                _ => {}
-            }
-        }
-
-        rect.draw();
-
-        win.set_active(true);
-        win.display();
-    }
+    can.set_draw_color(Color::RGB(0, 0, 0));
+    can.clear();
+    can.present();
 }
 

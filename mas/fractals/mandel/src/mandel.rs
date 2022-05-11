@@ -1,8 +1,21 @@
 use num::complex::Complex;
 use matrix::Matrix;
-use sfml::system::Vector2u;
-use sfml::window::Window;
-use sfml::graphics::Color;
+use sdl2::pixels::Color;
+
+/*
+#[derive(Debug)]
+pub struct Color {
+    r: u8,
+    g: u8,
+    b: u8
+}
+
+impl Color {
+    pub fn rgb(r: u8, g: u8, b: u8) -> Self {
+        Self { r, g, b }
+    }
+}
+*/
 
 fn mandel(n: u64, c: Complex<f64>) -> Complex<f64> {
     if n == 0 {
@@ -20,9 +33,9 @@ pub fn get_point_color(w: i32, h: i32, x: i32, y: i32, depth: u64) -> Color {
     let mut norm = mandel(depth, c).norm(); 
     
     if norm < 2.0 {
-        return Color::rgb(0, 0, 0);
+        return Color::RGB(0, 0, 0);
     } else {
-        return Color::rgb(255, 255, 255);
+        return Color::RGB(255, 255, 255);
     }
 }
 
