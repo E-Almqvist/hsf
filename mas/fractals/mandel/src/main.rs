@@ -1,8 +1,6 @@
 mod mandel;
 mod render;
 
-use std::env;
-
 use sdl2::pixels::Color;
 use sdl2::event::Event;
 use sdl2::keyboard::Keycode;
@@ -17,9 +15,14 @@ fn main() {
     */
     let (width, height) = (640, 480);
     let (xr, yr) = ([-200, 200], [-200, 200]);
+    let depth = 500;
     
     let (window, ctx, vid_sys) = render::create_window("Mandelbrot set", width, height);
 
+    let mut canvas = window.into_canvas().build().unwrap();
+    canvas.set_draw_color(Color::RGB(255, 255, 255));
+    canvas.clear();
+    canvas.present();
 
     let mut event_pump = ctx.event_pump().unwrap();
     'running: loop {
@@ -34,6 +37,14 @@ fn main() {
         }
 
         // render stuff
+        for dx in xr[0]..xr[1] {
+            for dy in yr[0]..yr[1] {
+                let col: Color = mandel::get_point_color(width.try_into().unwrap(), height.try_into().unwrap(), dx, dy, depth); 
+                println!("{}:{} {:?}", dx, dy, col);
+                render::set_pixel(&mut canvas, dx, dy, col);
+            }
+        }
+        canvas.present();
     }
     ::std::thread::sleep(Duration::new(0, 1_000_000_000u32 / 60));
 }
