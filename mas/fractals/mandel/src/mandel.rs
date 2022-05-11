@@ -29,7 +29,9 @@ fn mandel(n: u64, c: Complex<f64>) -> Complex<f64> {
 
 pub fn get_point_color(w: i32, h: i32, x: i32, y: i32, depth: u64) -> Color {
     let c = Complex::<f64>::new((x + w/2).into(), (y + w/2).into());
-    let mut norm = mandel(depth, c).norm(); 
+    let mut z = mandel(depth, c);
+    let mut norm = z.norm();
+    println!("\rNorm: {:?}", norm);
     
     if norm < 2.0 {
         return Color::RGB(0, 0, 0);
