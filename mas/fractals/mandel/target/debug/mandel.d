@@ -1,0 +1,1 @@
+/home/elal/Projects/school/prog2/mas/fractals/mandel/target/debug/mandel: /home/elal/Projects/school/prog2/mas/fractals/mandel/src/main.rs /home/elal/Projects/school/prog2/mas/fractals/mandel/src/mandel.rs
