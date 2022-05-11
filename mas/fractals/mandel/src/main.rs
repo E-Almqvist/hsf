@@ -4,6 +4,9 @@ mod render;
 use std::env;
 
 use sdl2::pixels::Color;
+use sdl2::event::Event;
+use sdl2::keyboard::Keycode;
+use std::time::Duration;
 
 fn main() {
     /*
@@ -16,10 +19,22 @@ fn main() {
     let (xr, yr) = ([-200, 200], [-200, 200]);
     
     let (window, ctx, vid_sys) = render::create_window("Mandelbrot set", width, height);
-    let mut can = window.into_canvas().unwrap();
 
-    can.set_draw_color(Color::RGB(0, 0, 0));
-    can.clear();
-    can.present();
+
+    let mut event_pump = ctx.event_pump().unwrap();
+    'running: loop {
+        for event in event_pump.poll_iter() {
+            match event {
+                Event::Quit {..} |
+                Event::KeyDown { keycode: Some(Keycode::Escape), .. } => {
+                    break 'running
+                },
+                _ => {}
+            }
+        }
+
+        // render stuff
+    }
+    ::std::thread::sleep(Duration::new(0, 1_000_000_000u32 / 60));
 }
 
