@@ -26,25 +26,9 @@ fn main() {
     canvas.clear();
     canvas.present();
 
+    mandel::mandelbrot(&mut canvas, width, height, depth);
+    canvas.present();
 
-    let (mut dx, mut dy) = (xr[0], yr[0]);
-    let (mut x, mut y) = (0.0, 0.0);
-    let col: Color; // color buffer
-    while dx <= xr[1] {
-        dy = yr[0];
-        while dy <= yr[1] {
-            let col: Color = mandel::get_point_color(dx, dy, depth); 
-            y = dy*scale + (height as f32)/2.0;
-            x = dx*scale + (width as f32)/2.0;
-
-            // render pixel
-            render::set_pixel(&mut canvas, x as i32, y as i32, col);
-            println!("({dx} {dy}) - {x} {y}: {col:?}");
-            dy += theta;
-        }
-        dx += theta;
-        canvas.present();
-    }
     println!("Post mandel render");
 
     let mut event_pump = ctx.event_pump().unwrap();
@@ -61,7 +45,5 @@ fn main() {
 
     }
     ::std::thread::sleep(Duration::new(0, 1_000_000_000u32 / 60));
-    let mut coltest: Color = mandel::get_point_color(0.0, 1.0, depth);
-    println!("{coltest:?}");
 }
 

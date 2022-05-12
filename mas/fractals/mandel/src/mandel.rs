@@ -1,5 +1,8 @@
+use crate::render::set_pixel;
+
 use num::complex::Complex64;
 use sdl2::pixels::Color;
+use sdl2::render::Canvas;
 
 /*
 #[derive(Debug)]
@@ -38,7 +41,15 @@ pub fn get_point_color(x: f32, y: f32, depth: u64) -> Color {
     }
 }
 
-pub fn mandelbrot(w: u32, h: u32) -> Canvas {
+pub fn get_col(i: u32, max_iter: u32) -> Color {
+    if i > max_iter || i == 255 {
+        return Color::RGB(255, 255, 255);
+    } else {
+        return Color::RGB(i as u8, i as u8, i as u8);
+    }
+}
+
+pub fn mandelbrot(canvas: &mut Canvas<sdl2::video::Window>, w: u32, h: u32, depth: u32) {
 
     /*
 for each pixel (Px, Py) on the screen do
@@ -59,9 +70,23 @@ for each pixel (Px, Py) on the screen do
 
        */
 
+    let (mut x, mut y) = (0.0, 0.0);
+
     for dx in 0..w {
+        let x0 = ((dx as f32) / (w as f32)) * 3.5 - 2.5;
         for dy in 0..h {
+            let y0 = ((dy as f32) / (h as f32)) * 2.0 - 1.0;
+
+            let mut i: u32 = 0;
             
+            while i < depth && x*x + y*y <= 4.0 {
+                let xtemp = x*x - y*y + x0;
+                y = 2.0*x*y + y0;
+                x = xtemp;
+                i += 1;
+            }
+            let col = get_col(i, depth);
+            set_pixel(canvas, dx as i32, dy as i32, col);
         }
     }
 }
