@@ -13,20 +13,18 @@ fn main() {
     let height: u32 = args[2].parse::<u32>().unwrap();
     println!("{} {}", width, height);
     */
-    let (width, height) = (640, 480);
-    let (xr, yr) = ([-2.0, 0.47], [-2.12, 2.12]);
-    let theta = 0.01;
-    let scale = 100.0;
-    let depth = 400;
+    let (width, height) = (1600, 900);
+    let depth = 5000;
     
     let (window, ctx, vid_sys) = render::create_window("Mandelbrot set", width, height);
 
     let mut canvas = window.into_canvas().build().unwrap();
-    canvas.set_draw_color(Color::RGB(255, 255, 255));
+    canvas.set_draw_color(Color::RGB(0, 0, 0));
     canvas.clear();
-    canvas.present();
+    //canvas.present();
 
-    mandel::mandelbrot(&mut canvas, width, height, depth);
+    println!("Rendering...");
+    mandel::mandelbrot(&mut canvas, width, height, depth, 0.0, 0.0, 0.0, 0.0);
     canvas.present();
 
     println!("Post mandel render");
