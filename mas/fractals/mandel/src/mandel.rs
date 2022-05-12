@@ -24,16 +24,16 @@ fn mandel(n: u64, c: Complex64) -> Complex64 {
     }
 }
 
-pub fn get_point_color(x: i32, y: i32, depth: u64) -> Color {
+pub fn get_point_color(x: f32, y: f32, depth: u64) -> Color {
     let c = Complex64::new(x.into(), y.into());
     let mut z = mandel(depth, c);
     let mut norm = z.re*z.re + z.im*z.im;
 
-    println!("{:?} {:?} < 2?", z, norm);
+    //println!("{:?} {:?} < 2?", z, norm);
     
-    if norm < 4.0 {
+    if norm < 2.0 {
         return Color::RGB(0, 0, 0);
     } else {
-        return Color::RGB(25, 25, 25);
+        return Color::RGB(250, 250, 250);
     }
 }
