@@ -8,7 +8,7 @@ pub fn get_col(i: u32, max_iter: u32) -> Color {
     if i > max_iter || i == 255 {
         return Color::RGB(255, 255, 255);
     } else {
-        return Color::RGB(i as u8, 0, i as u8);
+        return Color::RGB((i as u8), (i as u8), (i as u8));
     }
 }
 
@@ -33,7 +33,7 @@ pub fn mandelbrot(canvas: &mut Canvas<sdl2::video::Window>, w: u32, h: u32, dept
    */
 
     for dx in 0..w {
-        let x0 = ((dx as f32) / (w as f32)) * (3.5 + xzoom) - (2.5 + xoffset);
+        let x0 = ((dx as f32) / (w as f32)) * (3.5 + xzoom) - (2.5 - xoffset);
         for dy in 0..h {
             let y0 = ((dy as f32) / (h as f32)) * (2.0 + yzoom) - (1.0 + yoffset);
 

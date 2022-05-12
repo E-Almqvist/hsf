@@ -13,21 +13,21 @@ fn main() {
     let height: u32 = args[2].parse::<u32>().unwrap();
     println!("{} {}", width, height);
     */
-    let (width, height) = (1600, 900);
-    let depth = 5000;
+    let (width, height) = (640, 480);
+    let (mut dx, mut dy) = (0.0, 0.0);
+    let (mut zx, mut zy) = (0.0, 0.0);
+    let mut step = 0.05;
+    let (mut dzx, mut dzy) = (0.4, 0.2);
+    let depth = 1000;
     
     let (window, ctx, vid_sys) = render::create_window("Mandelbrot set", width, height);
 
     let mut canvas = window.into_canvas().build().unwrap();
     canvas.set_draw_color(Color::RGB(0, 0, 0));
     canvas.clear();
-    //canvas.present();
-
-    println!("Rendering...");
-    mandel::mandelbrot(&mut canvas, width, height, depth, 0.0, 0.0, 0.0, 0.0);
     canvas.present();
 
-    println!("Post mandel render");
+    let mut render_new = true;
 
     let mut event_pump = ctx.event_pump().unwrap();
     'running: loop {
@@ -37,11 +37,52 @@ fn main() {
                 Event::KeyDown { keycode: Some(Keycode::Escape), .. } => {
                     break 'running
                 },
+                Event::KeyDown { keycode: Some(Keycode::Left), .. } => {
+                    println!("Left");
+                    render_new = true;
+                    dx -= step;
+                },
+                Event::KeyDown { keycode: Some(Keycode::Right), .. } => {
+                    println!("Right");
+                    render_new = true;
+                    dx += step;
+                },
+                Event::KeyDown { keycode: Some(Keycode::Up), .. } => {
+                    println!("Up");
+                    render_new = true;
+                    dy += step;
+                },
+                Event::KeyDown { keycode: Some(Keycode::Down), .. } => {
+                    println!("Down");
+                    render_new = true;
+                    dy -= step;
+                },
+                Event::KeyDown { keycode: Some(Keycode::Space), .. } => {
+                    println!("ZOOM+");
+                    render_new = true;
+                    zy -= dzy;
+                    zx -= dzx;
+                },
+                Event::KeyDown { keycode: Some(Keycode::LShift), .. } => {
+                    println!("ZOOM-");
+                    render_new = true;
+                    zy += dzy;
+                    zx += dzx;
+                },
                 _ => {}
             }
         }
 
+        if render_new {
+            println!("Rendering...");
+            mandel::mandelbrot(&mut canvas, width, height, depth, zx, zy, dx, dy);
+            canvas.present();
+            render_new = false;
+
+            println!("Post mandel render");
+        }
+
     }
-    ::std::thread::sleep(Duration::new(0, 1_000_000_000u32 / 60));
+    //::std::thread::sleep(Duration::new(0, 1_000_000_000u32 / 60));
 }
 
