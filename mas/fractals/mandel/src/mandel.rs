@@ -1,6 +1,4 @@
 use crate::render::set_pixel;
-
-use num::complex::Complex64;
 use sdl2::pixels::Color;
 use sdl2::render::Canvas;
 
@@ -8,7 +6,7 @@ pub fn get_col(i: u32, max_iter: u32) -> Color {
     if i > max_iter || i == 255 {
         return Color::RGB(255, 255, 255);
     } else {
-        return Color::RGB((i as u8), (i as u8), (i as u8));
+        return Color::RGB(i as u8, i as u8, i as u8);
     }
 }
 

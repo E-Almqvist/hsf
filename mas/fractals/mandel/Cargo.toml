@@ -11,5 +11,5 @@ matrix = "0.22.0"
 
 [dependencies.sdl2]
 version = "0.35.2"
-default-features = false
-features = ["ttf"]
+#default-features = false
+#features = ["ttf"]

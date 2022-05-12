@@ -2,7 +2,7 @@ extern crate sdl2;
 use sdl2::pixels::Color;
 use sdl2::rect::Rect;
 use sdl2::render::Canvas;
-use sdl2::ttf::Font;
+//use sdl2::ttf::Font;
 
 pub fn create_window(title: &str, width: u32, height: u32) 
     -> (sdl2::video::Window, sdl2::Sdl, sdl2::VideoSubsystem) 

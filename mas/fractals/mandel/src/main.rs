@@ -4,7 +4,6 @@ mod render;
 use sdl2::pixels::Color;
 use sdl2::event::Event;
 use sdl2::keyboard::Keycode;
-use std::time::Duration;
 
 fn main() {
     /*
@@ -13,14 +12,15 @@ fn main() {
     let height: u32 = args[2].parse::<u32>().unwrap();
     println!("{} {}", width, height);
     */
-    let (width, height) = (640, 480);
-    let (mut dx, mut dy) = (0.0, 0.0);
-    let (mut zx, mut zy) = (2.0, 2.0);
-    let mut step = 0.05;
-    let (mut zoom_in, mut zoom_out) = (1.1, 0.9);
+    //let (width, height) = (640, 480);
+    let (width, height) = (1600, 900);
+    let (mut dx, mut dy) = (1.0, 0.0);
+    let (mut zx, mut zy) = (2.8, 2.0); 
+    let step = 0.05;
+    let (zoom_out, zoom_in) = (1.1, 0.9);
     let depth = 1000;
-    
-    let (window, ctx, vid_sys) = render::create_window("Mandelbrot set", width, height);
+
+    let (window, ctx, _vid_sys) = render::create_window("Mandelbrot set", width, height);
 
     let mut canvas = window.into_canvas().build().unwrap();
     canvas.set_draw_color(Color::RGB(0, 0, 0));
@@ -40,22 +40,22 @@ fn main() {
                 Event::KeyDown { keycode: Some(Keycode::Left), .. } => {
                     println!("Left");
                     render_new = true;
-                    dx -= step;
+                    dx -= step * zx;
                 },
                 Event::KeyDown { keycode: Some(Keycode::Right), .. } => {
                     println!("Right");
                     render_new = true;
-                    dx += step;
+                    dx += step * zx;
                 },
                 Event::KeyDown { keycode: Some(Keycode::Up), .. } => {
                     println!("Up");
                     render_new = true;
-                    dy += step;
+                    dy += step * zy;
                 },
                 Event::KeyDown { keycode: Some(Keycode::Down), .. } => {
                     println!("Down");
                     render_new = true;
-                    dy -= step;
+                    dy -= step * zy;
                 },
                 Event::KeyDown { keycode: Some(Keycode::Space), .. } => {
                     println!("ZOOM+");
