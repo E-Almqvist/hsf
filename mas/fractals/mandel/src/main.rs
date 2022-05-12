@@ -4,6 +4,7 @@ mod render;
 use sdl2::pixels::Color;
 use sdl2::event::Event;
 use sdl2::keyboard::Keycode;
+use std::thread;
 
 fn main() {
     /*
@@ -13,6 +14,8 @@ fn main() {
     println!("{} {}", width, height);
     */
     //let (width, height) = (640, 480);
+
+    // config stuff
     let (width, height) = (1600, 900);
     let (mut dx, mut dy) = (1.0, 0.0);
     let (mut zx, mut zy) = (2.8, 2.0); 
@@ -20,6 +23,11 @@ fn main() {
     let (zoom_out, zoom_in) = (1.1, 0.9);
     let depth = 1000;
 
+    // Sectors for multithreading
+    let threads = 4;
+    let (w_sector_size, h_sector_size) = (width/threads, height/threads);
+
+    // create window
     let (window, ctx, _vid_sys) = render::create_window("Mandelbrot set", width, height);
 
     let mut canvas = window.into_canvas().build().unwrap();
@@ -74,14 +82,22 @@ fn main() {
         }
 
         if render_new {
-            println!("Rendering...");
-            mandel::mandelbrot(&mut canvas, width, height, depth, zx, zy, dx, dy);
-            canvas.present();
+            let mut maps = Vec::new();
+            for thread_id in 0..threads {
+                thread::spawn(move || { // do cool threads for performance
+                    let mut pixmap = render::prerender_mandelbrot(
+                        width, height, depth, 
+                        zx, zy, dx, dy, 
+                        thread_id, threads, w_sector_size, h_sector_size);
+                    maps.push(pixmap);
+                });
+            }
+
+            for pixmap in maps.iter() {
+                // do render
+            }
             render_new = false;
-
-            println!("Post mandel render");
         }
-
     }
     //::std::thread::sleep(Duration::new(0, 1_000_000_000u32 / 60));
 }

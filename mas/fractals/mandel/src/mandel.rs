@@ -1,4 +1,5 @@
 use crate::render::set_pixel;
+use crate::render::PixelMap;
 use sdl2::pixels::Color;
 use sdl2::render::Canvas;
 
@@ -10,7 +11,7 @@ pub fn get_col(i: u32, max_iter: u32) -> Color {
     }
 }
 
-pub fn mandelbrot(canvas: &mut Canvas<sdl2::video::Window>, w: u32, h: u32, depth: u32, xzoom: f32, yzoom: f32, xoffset: f32, yoffset: f32) {
+pub fn mandelbrot(pixmap: &mut PixelMap, w: u32, h: u32, depth: u32, xzoom: f32, yzoom: f32, xoffset: f32, yoffset: f32) {
 
     /*
     for each pixel (Px, Py) on the screen do
@@ -35,7 +36,7 @@ pub fn mandelbrot(canvas: &mut Canvas<sdl2::video::Window>, w: u32, h: u32, dept
         for dy in 0..h {
             let y0 = ((dy as f32) / (h as f32)) * (yzoom) - (1.0 + yoffset);
 
-        let (mut x, mut y) = (0.0, 0.0);
+            let (mut x, mut y) = (0.0, 0.0);
             let mut i: u32 = 0;
             
             while i < depth && x*x + y*y <= 4.0 {
@@ -45,7 +46,7 @@ pub fn mandelbrot(canvas: &mut Canvas<sdl2::video::Window>, w: u32, h: u32, dept
                 i += 1;
             }
             let col = get_col(i, depth);
-            set_pixel(canvas, dx as i32, dy as i32, col);
+            pixmap.set_pixel(dx as u32, dy as u32, col);
         }
     }
 }
