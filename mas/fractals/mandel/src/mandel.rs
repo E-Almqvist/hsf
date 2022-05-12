@@ -33,9 +33,9 @@ pub fn mandelbrot(canvas: &mut Canvas<sdl2::video::Window>, w: u32, h: u32, dept
    */
 
     for dx in 0..w {
-        let x0 = ((dx as f32) / (w as f32)) * (3.5 + xzoom) - (2.5 - xoffset);
+        let x0 = ((dx as f32) / (w as f32)) * (xzoom) - (2.5 - xoffset);
         for dy in 0..h {
-            let y0 = ((dy as f32) / (h as f32)) * (2.0 + yzoom) - (1.0 + yoffset);
+            let y0 = ((dy as f32) / (h as f32)) * (yzoom) - (1.0 + yoffset);
 
         let (mut x, mut y) = (0.0, 0.0);
             let mut i: u32 = 0;

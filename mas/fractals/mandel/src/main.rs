@@ -15,9 +15,9 @@ fn main() {
     */
     let (width, height) = (640, 480);
     let (mut dx, mut dy) = (0.0, 0.0);
-    let (mut zx, mut zy) = (0.0, 0.0);
+    let (mut zx, mut zy) = (2.0, 2.0);
     let mut step = 0.05;
-    let (mut dzx, mut dzy) = (0.4, 0.2);
+    let (mut zoom_in, mut zoom_out) = (1.1, 0.9);
     let depth = 1000;
     
     let (window, ctx, vid_sys) = render::create_window("Mandelbrot set", width, height);
@@ -60,14 +60,14 @@ fn main() {
                 Event::KeyDown { keycode: Some(Keycode::Space), .. } => {
                     println!("ZOOM+");
                     render_new = true;
-                    zy -= dzy;
-                    zx -= dzx;
+                    zy *= zoom_in;
+                    zx *= zoom_in;
                 },
                 Event::KeyDown { keycode: Some(Keycode::LShift), .. } => {
                     println!("ZOOM-");
                     render_new = true;
-                    zy += dzy;
-                    zx += dzx;
+                    zy *= zoom_out;
+                    zx *= zoom_out;
                 },
                 _ => {}
             }
