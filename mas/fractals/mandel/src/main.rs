@@ -82,9 +82,9 @@ fn main() {
         }
 
         if render_new {
-            let mut maps = Vec::new();
+            let mut maps = &mut Vec::new();
             for thread_id in 0..threads {
-                thread::spawn(move || { // do cool threads for performance
+                thread::spawn(|| { // do cool threads for performance
                     let mut pixmap = render::prerender_mandelbrot(
                         width, height, depth, 
                         zx, zy, dx, dy, 
@@ -101,4 +101,3 @@ fn main() {
     }
     //::std::thread::sleep(Duration::new(0, 1_000_000_000u32 / 60));
 }
-
