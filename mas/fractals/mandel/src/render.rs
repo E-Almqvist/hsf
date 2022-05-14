@@ -66,10 +66,10 @@ pub fn set_pixel(canvas: &mut Canvas<sdl2::video::Window>, x: i32, y: i32, color
     canvas.fill_rect(Rect::new(x, y, 1, 1));
 }
 
-pub fn prerender_mandelbrot(w: u32, h: u32, depth: u32, xzoom: f32, yzoom: f32, xoffset: f32, yoffset: f32, thread_id: u32, threads: u32, w_sector_size: u32, h_sector_size: u32) -> PixelMap {
+pub fn prerender_mandelbrot(w: &u32, h: &u32, depth: &u32, xzoom: &f32, yzoom: &f32, xoffset: &f32, yoffset: &f32, thread_id: &u32, threads: &u32, w_sector_size: &u32, h_sector_size: &u32) -> PixelMap {
     println!("Rendering...");
-    let mut pixmap = PixelMap::new(w, h, thread_id * w_sector_size, thread_id * h_sector_size);
-    mandelbrot(&mut pixmap, w, h, depth, xzoom, yzoom, xoffset, yoffset);
+    let mut pixmap = PixelMap::new(*w, *h, thread_id * w_sector_size, thread_id * h_sector_size);
+    mandelbrot(&mut pixmap, *w, *h, *depth, *xzoom, *yzoom, *xoffset, *yoffset);
     println!("Post mandel render");
 
     return pixmap;

@@ -77,18 +77,28 @@ fn main() {
                     zy *= zoom_out;
                     zx *= zoom_out;
                 },
+                Event::KeyDown { keycode: Some(Keycode::W), .. } => {
+                    println!("(+) DEPTH= {depth}");
+                    render_new = true;
+                    depth *= 2;
+                },
+                Event::KeyDown { keycode: Some(Keycode::S), .. } => {
+                    println!("(-) DEPTH= {depth}");
+                    render_new = true;
+                    depth /= 2;
+                },
                 _ => {}
             }
         }
 
         if render_new {
-            let mut maps = &mut Vec::new();
+            let maps = &mut Vec::new();
             for thread_id in 0..threads {
-                thread::spawn(|| { // do cool threads for performance
-                    let mut pixmap = render::prerender_mandelbrot(
-                        width, height, depth, 
-                        zx, zy, dx, dy, 
-                        thread_id, threads, w_sector_size, h_sector_size);
+                thread::spawn(|| { 
+                    let pixmap = render::prerender_mandelbrot(
+                        &width, &height, &depth, 
+                        &zx, &zy, &dx, &dy, 
+                        &thread_id, &threads, &w_sector_size, &h_sector_size);
                     maps.push(pixmap);
                 });
             }
