@@ -1,2 +1,2 @@
-# PRRPRR02/WESWEB01
-Samlade filer för både Programmering 2 och Webbserver Programmering 1
+# High School Files
+Collection of my projects/notes/codes from high school.
